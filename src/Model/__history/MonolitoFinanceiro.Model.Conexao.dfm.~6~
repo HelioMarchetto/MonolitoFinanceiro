@@ -1,0 +1,17 @@
+object dmConexao: TdmConexao
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 312
+  Width = 386
+  object FDQuery1: TFDQuery
+    Connection = SQLConexao
+    SQL.Strings = (
+      'SELECT * FROM USUARIOS')
+    Left = 64
+    Top = 112
+  end
+  object SQLConexao: TFDConnection
+    Left = 64
+    Top = 48
+  end
+end

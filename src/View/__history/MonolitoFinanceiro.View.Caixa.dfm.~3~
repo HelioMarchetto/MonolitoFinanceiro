@@ -1,0 +1,59 @@
+inherited frmCaixa: TfrmCaixa
+  Caption = 'Caixa'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited PnlPrincipal: TCardPanel
+    inherited cardPesquisa: TCard
+      inherited pnlGrid: TPanel
+        inherited DBGrid1: TDBGrid
+          DataSource = DataSource1
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'ID'
+              Width = 68
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'DATA_CADASTRO'
+              Title.Caption = 'DATA'
+              Width = 124
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'NUMERO_DOCUMENTO'
+              Title.Caption = 'N'#186' Documento'
+              Width = 96
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'DESCRICAO'
+              Title.Caption = 'Descri'#231#227'o'
+              Width = 357
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'TIPO'
+              Width = 36
+              Visible = True
+            end
+            item
+              Alignment = taLeftJustify
+              Expanded = False
+              FieldName = 'VALOR'
+              Title.Alignment = taRightJustify
+              Width = 63
+              Visible = True
+            end>
+        end
+      end
+    end
+  end
+  inherited DataSource1: TDataSource
+    DataSet = dmCaixa.cdsCaixa
+  end
+end

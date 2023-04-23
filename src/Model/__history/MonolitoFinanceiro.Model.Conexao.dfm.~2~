@@ -1,0 +1,16 @@
+object DataModule1: TDataModule1
+  OldCreateOrder = False
+  Height = 312
+  Width = 386
+  object SQLConexao: TFDConnection
+    Params.Strings = (
+      
+        'Database=C:\Users\NETO\Desktop\Cursos\Academia do Codigo\Monolit' +
+        'oFinanceiro\db\SistemaFinanceiro.db'
+      'DriverID=SQLite')
+    Connected = True
+    LoginPrompt = False
+    Left = 64
+    Top = 40
+  end
+end

@@ -1,0 +1,47 @@
+object dmUsuarios: TdmUsuarios
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  Height = 285
+  Width = 370
+  object cdsUsuarios: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspUsuarios'
+    Left = 232
+    Top = 64
+    object cdsUsuariosID: TStringField
+      FieldName = 'ID'
+      Size = 36
+    end
+    object cdsUsuariosNome: TStringField
+      FieldName = 'Nome'
+      Size = 50
+    end
+    object cdsUsuariosLogin: TStringField
+      FieldName = 'Login'
+    end
+    object cdsUsuariosSenha: TStringField
+      FieldName = 'Senha'
+      Size = 60
+    end
+    object cdsUsuariosStatus: TStringField
+      FieldName = 'Status'
+      Size = 1
+    end
+    object cdsUsuariosData_Cadastro: TDateField
+      FieldName = 'Data_Cadastro'
+    end
+  end
+  object dspUsuarios: TDataSetProvider
+    DataSet = sqlUsuarios
+    Options = [poAllowCommandText, poUseQuoteChar]
+    Left = 144
+    Top = 64
+  end
+  object sqlUsuarios: TFDQuery
+    Connection = dmConexao.SQLConexao
+    Left = 64
+    Top = 64
+  end
+end

@@ -1,0 +1,89 @@
+unit MonolitoFinanceiro.View.RedefinirSenha;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, 
+  MonolitoFinanceiro.Entidades.Usuario;
+
+type
+  TfrmRedefinirSenha = class(TForm)
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Label3: TLabel;
+    edtSenha: TEdit;
+    Panel4: TPanel;
+    Label2: TLabel;
+    edtConfirmarSenha: TEdit;
+    Panel1: TPanel;
+    lblUsuario: TLabel;
+    lblUsuario2: TLabel;
+    Panel5: TPanel;
+    btnConfirmar: TButton;
+    btnCancelar: TButton;
+    procedure btnCancelarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btnConfirmarClick(Sender: TObject);
+  private
+    FUsuario: TModelEntidadeUsuario;
+    { Private declarations }
+  public
+    { Public declarations }
+    property Usuario: TModelEntidadeUsuario read FUsuario write FUsuario;    
+  end;
+
+var
+  frmRedefinirSenha: TfrmRedefinirSenha;
+
+implementation
+
+uses
+  Monolito.Financeiro.Model.Usuarios;
+
+{$R *.dfm}
+
+procedure TfrmRedefinirSenha.btnCancelarClick(Sender: TObject);
+begin
+  ModalResult := mrCancel;
+end;
+
+procedure TfrmRedefinirSenha.btnConfirmarClick(Sender: TObject);
+begin
+  edtSenha.Text := Trim(edtSenha.Text);
+  edtConfirmarSenha.Text := Trim(edtConfirmarSenha.Text);
+
+  if edtSenha.Text = '' then
+  begin
+    edtSenha.SetFocus;
+    Application.MessageBox('Informe a sua nova senha.', 'Atenção', MB_OK + MB_ICONWARNING);
+    abort;
+  end;
+
+  if edtConfirmarSenha.Text = '' then
+  begin
+    edtConfirmarSenha.SetFocus;
+    Application.MessageBox('Informe a sua nova senha.', 'Atenção', MB_OK + MB_ICONWARNING);
+    abort;
+  end;
+
+  if edtSenha.Text <> edtConfirmarSenha.Text then
+  begin
+    edtConfirmarSenha.SetFocus;
+    Application.MessageBox('Senha diferente da confirmação', 'Atenção', MB_OK + MB_ICONWARNING);
+    abort;
+  end;
+
+  Usuario.Senha := edtSenha.Text;
+  dmUsuarios.RedefinirSenha(Usuario);
+  Application.MessageBox('Senha alterada com sucesso', 'Sucesso', MB_OK + MB_ICONINFORMATION);
+  ModalResult := mrOk;
+  
+end;
+
+procedure TfrmRedefinirSenha.FormShow(Sender: TObject);
+begin
+  lblUsuario.Caption := FUsuario.Nome;
+end;
+
+end.

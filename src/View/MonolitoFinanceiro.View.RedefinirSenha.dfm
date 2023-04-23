@@ -1,0 +1,160 @@
+object frmRedefinirSenha: TfrmRedefinirSenha
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Redefinir Senha'
+  ClientHeight = 358
+  ClientWidth = 617
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -16
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 19
+  object Panel2: TPanel
+    Left = 0
+    Top = 110
+    Width = 617
+    Height = 248
+    Align = alClient
+    BevelOuter = bvNone
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Padding.Left = 60
+    Padding.Right = 60
+    ParentFont = False
+    TabOrder = 0
+    object Panel3: TPanel
+      Left = 60
+      Top = 0
+      Width = 497
+      Height = 80
+      Align = alTop
+      BevelOuter = bvNone
+      TabOrder = 0
+      object Label3: TLabel
+        Left = 0
+        Top = 0
+        Width = 497
+        Height = 19
+        Align = alTop
+        Caption = 'Senha'
+        ExplicitWidth = 43
+      end
+      object edtSenha: TEdit
+        Left = 0
+        Top = 19
+        Width = 497
+        Height = 27
+        Align = alTop
+        PasswordChar = '*'
+        TabOrder = 0
+      end
+    end
+    object Panel4: TPanel
+      Left = 60
+      Top = 80
+      Width = 497
+      Height = 73
+      Align = alTop
+      BevelOuter = bvNone
+      TabOrder = 1
+      object Label2: TLabel
+        Left = 0
+        Top = 0
+        Width = 497
+        Height = 19
+        Align = alTop
+        Caption = 'Confirme a sua senha'
+        ExplicitWidth = 153
+      end
+      object edtConfirmarSenha: TEdit
+        Left = 0
+        Top = 19
+        Width = 497
+        Height = 27
+        Align = alTop
+        TabOrder = 0
+      end
+    end
+    object Panel5: TPanel
+      Left = 60
+      Top = 175
+      Width = 497
+      Height = 50
+      BevelOuter = bvNone
+      TabOrder = 2
+      object btnConfirmar: TButton
+        Left = 339
+        Top = 0
+        Width = 158
+        Height = 50
+        Align = alRight
+        Caption = 'Confirmar'
+        TabOrder = 0
+        OnClick = btnConfirmarClick
+      end
+      object btnCancelar: TButton
+        Left = 0
+        Top = 0
+        Width = 158
+        Height = 50
+        Align = alLeft
+        Caption = 'Cancelar'
+        TabOrder = 1
+        OnClick = btnCancelarClick
+      end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 617
+    Height = 110
+    Align = alTop
+    BevelOuter = bvNone
+    Padding.Top = 30
+    TabOrder = 1
+    object lblUsuario: TLabel
+      Left = 0
+      Top = 30
+      Width = 617
+      Height = 33
+      Align = alTop
+      Alignment = taCenter
+      Caption = 'Usu'#225'rio'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clMenuHighlight
+      Font.Height = -27
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ExplicitWidth = 90
+    end
+    object lblUsuario2: TLabel
+      Left = 0
+      Top = 87
+      Width = 617
+      Height = 23
+      Align = alBottom
+      Alignment = taCenter
+      Caption = 'Informe a sua nova senha'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clDefault
+      Font.Height = -19
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ExplicitWidth = 220
+    end
+  end
+end

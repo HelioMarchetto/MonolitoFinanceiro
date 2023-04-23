@@ -1,0 +1,14 @@
+{
+	"hash": "d41d8cd98f00b204e9800998ecf8427e",
+	"updated": "2023-03-24T21:33:41.7954031-03:00",
+	"installedModules": {
+		"https://github.com/viniciussanchez/bcrypt": {
+			"name": "bcrypt",
+			"version": "1.0.8",
+			"hash": "69891b745eb58d4f9803acfb84163313",
+			"artifacts": {},
+			"failed": false,
+			"changed": false
+		}
+	}
+}

@@ -1,0 +1,24 @@
+unit MonolitoFinanceiro.View.Caixa.Saldo;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+  TfrmCaixaSaldo = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCaixaSaldo: TfrmCaixaSaldo;
+
+implementation
+
+{$R *.dfm}
+
+end.
