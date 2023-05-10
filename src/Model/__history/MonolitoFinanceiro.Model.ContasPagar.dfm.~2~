@@ -1,0 +1,23 @@
+object dmContasPagar: TdmContasPagar
+  OldCreateOrder = False
+  Height = 301
+  Width = 394
+  object sqlContasPagar: TFDQuery
+    Connection = dmConexao.SQLConexao
+    Left = 32
+    Top = 24
+  end
+  object dspContasPagar: TDataSetProvider
+    DataSet = sqlContasPagar
+    Options = [poAllowCommandText, poUseQuoteChar]
+    Left = 120
+    Top = 24
+  end
+  object cdsContasPagar: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspContasPagar'
+    Left = 216
+    Top = 24
+  end
+end
