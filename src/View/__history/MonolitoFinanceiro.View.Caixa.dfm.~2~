@@ -1,5 +1,0 @@
-inherited frmCaixa: TfrmCaixa
-  Caption = 'Caixa'
-  PixelsPerInch = 96
-  TextHeight = 13
-end

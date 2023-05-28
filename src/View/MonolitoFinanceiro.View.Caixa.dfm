@@ -2,6 +2,7 @@ inherited frmCaixa: TfrmCaixa
   Caption = 'Caixa'
   ClientHeight = 506
   ClientWidth = 719
+  OnCreate = FormCreate
   ExplicitWidth = 725
   ExplicitHeight = 535
   PixelsPerInch = 96
@@ -9,11 +10,13 @@ inherited frmCaixa: TfrmCaixa
   inherited PnlPrincipal: TCardPanel
     Width = 719
     Height = 506
+    ExplicitWidth = 719
+    ExplicitHeight = 506
     inherited cardCadastro: TCard
       Width = 717
       Height = 504
-      ExplicitWidth = 738
-      ExplicitHeight = 502
+      ExplicitWidth = 717
+      ExplicitHeight = 504
       object Label2: TLabel [0]
         Left = 16
         Top = 59
@@ -38,15 +41,15 @@ inherited frmCaixa: TfrmCaixa
       inherited Panel1: TPanel
         Top = 432
         Width = 717
-        ExplicitTop = 430
-        ExplicitWidth = 738
+        ExplicitTop = 432
+        ExplicitWidth = 717
         inherited btnCancelar: TButton
           Left = 620
-          ExplicitLeft = 641
+          ExplicitLeft = 620
         end
         inherited btnSalvar: TButton
           Left = 524
-          ExplicitLeft = 545
+          ExplicitLeft = 524
         end
       end
       object edtNumeroDocumento: TEdit
@@ -86,8 +89,11 @@ inherited frmCaixa: TfrmCaixa
     inherited cardPesquisa: TCard
       Width = 717
       Height = 504
+      ExplicitWidth = 717
+      ExplicitHeight = 504
       inherited pnlPesquisa: TPanel
         Width = 717
+        ExplicitWidth = 717
         object Label5: TLabel [1]
           Left = 397
           Top = 12
@@ -101,6 +107,7 @@ inherited frmCaixa: TfrmCaixa
         end
         inherited Button1: TButton
           Left = 620
+          ExplicitLeft = 620
         end
         object cbTipo: TComboBox
           Left = 397
@@ -120,6 +127,8 @@ inherited frmCaixa: TfrmCaixa
       inherited pnlGrid: TPanel
         Width = 717
         Height = 367
+        ExplicitWidth = 717
+        ExplicitHeight = 367
         inherited DBGrid1: TDBGrid
           Width = 715
           Height = 365
@@ -168,8 +177,11 @@ inherited frmCaixa: TfrmCaixa
       inherited pnlPesquisaBotoes: TPanel
         Top = 432
         Width = 717
+        ExplicitTop = 432
+        ExplicitWidth = 717
         inherited btnFechar: TButton
           Left = 620
+          ExplicitLeft = 620
         end
       end
     end

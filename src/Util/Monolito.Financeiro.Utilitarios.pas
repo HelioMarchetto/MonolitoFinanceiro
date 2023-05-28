@@ -9,13 +9,34 @@ type
     class Function GetID : String;
     class function LikeFind(Pesquisa: String; Grid: TDBGrid): string;
     class function FormatoMoeda(aValue : Currency): String;
+    class function FormatarValor(aValue: Currency; Decimais : Integer = 2): string; overload;
+    class function FormatarValor(aValue: String; Decimais : Integer = 2): string; overload;
+    class function TruncarValor(aValue: Currency; Decimais: Integer = 2): currency;
+    class procedure KeyPressValor(Sender: TObject; var Key: Char);
   end;
 implementation
 
 { TUtilitarios }
 
 uses
-  System.SysUtils;
+  System.SysUtils, Vcl.StdCtrls, System.Math;
+
+class function TUtilitarios.FormatarValor(aValue: Currency;
+  Decimais: Integer): string;
+begin
+  aValue := TruncarValor(aValue, Decimais);
+  Result := FormatCurr('0.' + StringOfChar('0', Decimais), aValue);
+end;
+
+class function TUtilitarios.FormatarValor(aValue: String;
+  Decimais: Integer): string;
+var
+  LValor : Currency;
+begin
+  LValor := 0;
+  TryStrToCurr(aValue, LValor);
+  Result := FormatarValor(LValor, Decimais);
+end;
 
 class function TUtilitarios.FormatoMoeda(aValue: Currency): String;
 begin
@@ -29,6 +50,19 @@ begin
   Result := StringReplace(Result, '}', '',[rfReplaceAll]);
 end;
 
+class procedure TUtilitarios.KeyPressValor(Sender: TObject; var Key: Char);
+begin
+  if Key = FormatSettings.ThousandSeparator then
+    Key := FormatSettings.DecimalSeparator;
+
+  if not (CharInSet(Key, ['0'..'9', chr (8), FormatSettings.DecimalSeparator])) then
+    Key := #0;
+
+  if (Key = FormatSettings.DecimalSeparator) and (pos(Key, TEdit(Sender).Text) > 0) then
+    Key := #0;
+
+end;
+
 class function TUtilitarios.LikeFind(Pesquisa: String; Grid: TDBGrid): string;
 var
   LContador: Integer;
@@ -40,6 +74,15 @@ begin
     Result := Result + Grid.Columns.Items[LContador].FieldName +
       ' LIKE ' + QuotedStr('%' + Trim(Pesquisa) + '%') + ' OR ';
   Result := ' AND (' + Copy(Result, 1, length (Result) - 4) + ')';
+end;
+
+class function TUtilitarios.TruncarValor(aValue: Currency;
+  Decimais: Integer): currency;
+var
+  LFator : Double;
+begin
+  LFator := Power(10, Decimais);
+  Result := Trunc(aValue * LFator) / LFator;
 end;
 
 end.

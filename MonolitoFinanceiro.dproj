@@ -167,6 +167,15 @@
             <Form>frmContasPagar</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\Model\MonolitoFinanceiro.Model.ContasReceber.pas">
+            <Form>dmContasReceber</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="src\View\MonolitoFinanceiro.View.ContasReceber.pas">
+            <Form>frmContasReceber</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

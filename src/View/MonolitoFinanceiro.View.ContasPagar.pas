@@ -49,6 +49,10 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure toggleParcelamentoClick(Sender: TObject);
     procedure btnGerarClick(Sender: TObject);
+    procedure btnLimparClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure edtValorCompraExit(Sender: TObject);
+    procedure edtValorParcelaExit(Sender: TObject);
   private
     { Private declarations }
     procedure CadastrarParcelamento;
@@ -88,14 +92,18 @@ begin
 
   inherited;
 
+  toggleParcelamento.Enabled := False;
+  toggleParcelamento.State := tssOff;
+  cardParcela.ActiveCard := cardParcelaUnica;
+  cdsParcelas.EmptyDataSet;
+
   edtNumeroDoc.Text := dmContasPagar.cdsContasPagarnumero_documento.AsString;
   edtDescricao.Text := dmContasPagar.cdsContasPagardescricao.AsString;
-  edtValorCompra.Text := dmContasPagar.cdsContasPagarvalor_compra.AsString;
+  edtValorCompra.Text := TUtilitarios.FormatarValor(dmContasPagar.cdsContasPagarvalor_compra.AsCurrency);
   dateCompra.Date := dmContasPagar.cdsContasPagardata_compra.AsDateTime;
   edtParcela.Text := dmContasPagar.cdsContasPagarparcela.AsString;
-  edtValorParcela.Text := dmContasPagar.cdsContasPagarvalor_parcela.AsString;
+  edtValorParcela.Text := TUtilitarios.FormatarValor(dmContasPagar.cdsContasPagarvalor_parcela.AsCurrency);
   dateVencimento.Date := dmContasPagar.cdsContasPagardata_vencimento.AsDateTime;
-
 end;
 
 procedure TfrmContasPagar.btnExcluirClick(Sender: TObject);
@@ -106,7 +114,7 @@ begin
     Abort;
   end;
 
-  if Application.MessageBox('Deseja realmente cancelar esse cocumento', 'Pergunta', MB_YESNO + MB_ICONQUESTION) <> mrYes then
+  if Application.MessageBox('Deseja realmente cancelar esse documento', 'Pergunta', MB_YESNO + MB_ICONQUESTION) <> mrYes then
     exit;
 
   try
@@ -152,7 +160,7 @@ begin
     abort;
   end;
 
-  LValorParcela := (Trunc(LValorCompra / LQuantidadeParcelas * 100)) / 100;
+  LValorParcela := TUtilitarios.TruncarValor(LValorCompra / LQuantidadeParcelas);// * 100)) / 100;
   LValorResiduo := LValorCompra - (LValorParcela * LQuantidadeParcelas);
 
   cdsParcelas.EmptyDataSet;
@@ -173,6 +181,16 @@ begin
   inherited;
   dateCompra.Date := Now;
   dateVencimento.Date := Now;
+
+  toggleParcelamento.Enabled := True;
+  toggleParcelamento.State := tssOff;
+  cardParcela.ActiveCard := cardParcelaUnica;
+  cdsParcelas.EmptyDataSet;
+end;
+
+procedure TfrmContasPagar.btnLimparClick(Sender: TObject);
+begin
+  cdsParcelas.EmptyDataSet;
 end;
 
 procedure TfrmContasPagar.btnSalvarClick(Sender: TObject);
@@ -307,6 +325,23 @@ begin
   dmContasPagar.cdsContasPagardata_vencimento.AsDateTime := dateVencimento.DateTime;
   dmContasPagar.cdsContasPagardata_compra.AsDateTime := dateCompra.Date;
 
+end;
+
+procedure TfrmContasPagar.edtValorCompraExit(Sender: TObject);
+begin
+  edtValorCompra.Text := TUtilitarios.FormatarValor(edtValorCompra.Text);
+end;
+
+procedure TfrmContasPagar.edtValorParcelaExit(Sender: TObject);
+begin
+  edtValorParcela.Text := TUtilitarios.FormatarValor(edtValorParcela.Text);
+end;
+
+procedure TfrmContasPagar.FormCreate(Sender: TObject);
+begin
+  inherited;
+  edtValorCompra.OnKeyPress := TUtilitarios.KeyPressValor;
+  edtValorParcela.OnKeyPress := TUtilitarios.KeyPressValor;
 end;
 
 procedure TfrmContasPagar.Pesquisar;

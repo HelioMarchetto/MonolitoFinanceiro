@@ -18,7 +18,9 @@ uses
   MonolitoFinanceiro.View.Caixa.Saldo in 'src\View\MonolitoFinanceiro.View.Caixa.Saldo.pas' {frmCaixaSaldo},
   MonolitoFinanceiro.Entidades.Caixa.Resumo in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.Caixa.Resumo.pas',
   MonolitoFinanceiro.Model.ContasPagar in 'src\Model\MonolitoFinanceiro.Model.ContasPagar.pas' {dmContasPagar: TDataModule},
-  MonolitoFinanceiro.View.ContasPagar in 'src\View\MonolitoFinanceiro.View.ContasPagar.pas' {frmContasPagar};
+  MonolitoFinanceiro.View.ContasPagar in 'src\View\MonolitoFinanceiro.View.ContasPagar.pas' {frmContasPagar},
+  MonolitoFinanceiro.Model.ContasReceber in 'src\Model\MonolitoFinanceiro.Model.ContasReceber.pas' {dmContasReceber: TDataModule},
+  MonolitoFinanceiro.View.ContasReceber in 'src\View\MonolitoFinanceiro.View.ContasReceber.pas' {frmContasReceber};
 
 {$R *.res}
 
@@ -36,5 +38,7 @@ begin
   Application.CreateForm(TfrmCaixaSaldo, frmCaixaSaldo);
   Application.CreateForm(TdmContasPagar, dmContasPagar);
   Application.CreateForm(TfrmContasPagar, frmContasPagar);
+  Application.CreateForm(TdmContasReceber, dmContasReceber);
+  Application.CreateForm(TfrmContasReceber, frmContasReceber);
   Application.Run;
 end.

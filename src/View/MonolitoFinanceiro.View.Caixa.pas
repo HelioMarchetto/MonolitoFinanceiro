@@ -21,6 +21,7 @@ type
     Label5: TLabel;
     procedure btnSalvarClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -94,6 +95,12 @@ begin
   dmCaixa.cdsCaixaTIPO.AsString       := LTipo;
 
   inherited;
+end;
+
+procedure TfrmCaixa.FormCreate(Sender: TObject);
+begin
+  inherited;
+  edtValor.OnKeyPress := TUtilitarios.KeyPressValor;
 end;
 
 procedure TfrmCaixa.Pesquisar;
