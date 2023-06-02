@@ -1,0 +1,7 @@
+unit MonolitoFinanceiro.Entidades.ContaPagar;
+
+interface
+
+implementation
+
+end.

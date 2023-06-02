@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, MonolitoFinanceiro.View.CadastroPadrao,
   Data.DB, System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls,
   Vcl.ExtCtrls, Vcl.WinXPanels, MonolitoFinanceiro.Model.Conexao, MonolitoFinanceiro.Model.ContasPagar,
-  Vcl.ComCtrls, Vcl.WinXCtrls, Datasnap.DBClient;
+  Vcl.ComCtrls, Vcl.WinXCtrls, Datasnap.DBClient, Vcl.Menus;
 
 type
   TfrmContasPagar = class(TfrmCadastroPadrao)
@@ -43,6 +43,8 @@ type
     cdsParcelasValor: TCurrencyField;
     cdsParcelasVencimento: TDateField;
     cdsParcelasDocumento: TStringField;
+    PopupMenu1: TPopupMenu;
+    mnuBaixar: TMenuItem;
     procedure btnSalvarClick(Sender: TObject);
     procedure btnIncluirClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
@@ -53,6 +55,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure edtValorCompraExit(Sender: TObject);
     procedure edtValorParcelaExit(Sender: TObject);
+    procedure mnuBaixarClick(Sender: TObject);
   private
     { Private declarations }
     procedure CadastrarParcelamento;
@@ -70,7 +73,7 @@ implementation
 
 uses
   Monolito.Financeiro.Utilitarios,
-  System.DateUtils;
+  System.DateUtils, MonolitoFinanceiro.View.ContasPagar.Baixar;
 
 {$R *.dfm}
 
@@ -342,6 +345,12 @@ begin
   inherited;
   edtValorCompra.OnKeyPress := TUtilitarios.KeyPressValor;
   edtValorParcela.OnKeyPress := TUtilitarios.KeyPressValor;
+end;
+
+procedure TfrmContasPagar.mnuBaixarClick(Sender: TObject);
+begin
+  frmContasPagarBaixar.BaixarContaPagar(DataSource1.DataSet.FieldByName('ID').AsString);
+  Pesquisar;
 end;
 
 procedure TfrmContasPagar.Pesquisar;

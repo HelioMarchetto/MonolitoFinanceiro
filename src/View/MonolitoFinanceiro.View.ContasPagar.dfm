@@ -1,11 +1,17 @@
 inherited frmContasPagar: TfrmContasPagar
   Caption = 'Cadastro de Contas a Pagar'
   OnCreate = FormCreate
-  PixelsPerInch = 96
+  ExplicitWidth = 781
+  ExplicitHeight = 558
   TextHeight = 13
   inherited PnlPrincipal: TCardPanel
-    ActiveCard = cardCadastro
+    ExplicitWidth = 765
+    ExplicitHeight = 519
     inherited cardCadastro: TCard
+      Width = 767
+      Height = 518
+      ExplicitWidth = 763
+      ExplicitHeight = 517
       object Label2: TLabel [0]
         Left = 24
         Top = 40
@@ -35,7 +41,19 @@ inherited frmContasPagar: TfrmContasPagar
         Caption = 'Parcelamento'
       end
       inherited Panel1: TPanel
+        Top = 446
+        Width = 767
         TabOrder = 5
+        ExplicitTop = 445
+        ExplicitWidth = 763
+        inherited btnCancelar: TButton
+          Left = 670
+          ExplicitLeft = 666
+        end
+        inherited btnSalvar: TButton
+          Left = 574
+          ExplicitLeft = 570
+        end
       end
       object edtDescricao: TEdit
         Left = 120
@@ -229,9 +247,28 @@ inherited frmContasPagar: TfrmContasPagar
       end
     end
     inherited cardPesquisa: TCard
+      Width = 767
+      Height = 518
+      ExplicitWidth = 767
+      ExplicitHeight = 518
+      inherited pnlPesquisa: TPanel
+        Width = 767
+        ExplicitWidth = 767
+        inherited Button1: TButton
+          Left = 670
+          ExplicitLeft = 670
+        end
+      end
       inherited pnlGrid: TPanel
+        Width = 767
+        Height = 381
+        ExplicitWidth = 767
+        ExplicitHeight = 381
         inherited DBGrid1: TDBGrid
+          Width = 765
+          Height = 379
           DataSource = DataSource1
+          PopupMenu = PopupMenu1
           Columns = <
             item
               Expanded = False
@@ -283,30 +320,36 @@ inherited frmContasPagar: TfrmContasPagar
               Expanded = False
               FieldName = 'valor_abatido'
               Title.Caption = 'Valor Abatido'
-              Width = 64
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'data_compra'
               Title.Caption = 'Data Compra'
-              Width = 64
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'data_cadastro'
               Title.Caption = 'Data Cadastro'
-              Width = 64
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'data_pagamento'
               Title.Caption = 'Data Pagamento'
-              Width = 64
               Visible = True
             end>
+        end
+      end
+      inherited pnlPesquisaBotoes: TPanel
+        Top = 446
+        Width = 767
+        ExplicitTop = 446
+        ExplicitWidth = 767
+        inherited btnFechar: TButton
+          Left = 670
+          ExplicitLeft = 670
         end
       end
     end
@@ -1942,5 +1985,13 @@ inherited frmContasPagar: TfrmContasPagar
     DataSet = cdsParcelas
     Left = 433
     Top = 296
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 513
+    Top = 298
+    object mnuBaixar: TMenuItem
+      Caption = 'Baixar'
+      OnClick = mnuBaixarClick
+    end
   end
 end

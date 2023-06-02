@@ -1,5 +1,6 @@
 inherited frmContasPagar: TfrmContasPagar
   Caption = 'Cadastro de Contas a Pagar'
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   inherited PnlPrincipal: TCardPanel
@@ -33,19 +34,23 @@ inherited frmContasPagar: TfrmContasPagar
         Height = 13
         Caption = 'Parcelamento'
       end
+      inherited Panel1: TPanel
+        TabOrder = 5
+      end
       object edtDescricao: TEdit
         Left = 120
         Top = 37
         Width = 289
         Height = 21
-        TabOrder = 1
+        TabOrder = 0
       end
       object edtValorCompra: TEdit
         Left = 120
-        Top = 78
+        Top = 84
         Width = 289
         Height = 21
-        TabOrder = 2
+        TabOrder = 1
+        OnExit = edtValorCompraExit
       end
       object dateCompra: TDateTimePicker
         Left = 120
@@ -54,7 +59,7 @@ inherited frmContasPagar: TfrmContasPagar
         Height = 21
         Date = 45049.000000000000000000
         Time = 0.923059108798042900
-        TabOrder = 3
+        TabOrder = 2
       end
       object toggleParcelamento: TToggleSwitch
         Left = 120
@@ -63,7 +68,7 @@ inherited frmContasPagar: TfrmContasPagar
         Height = 20
         StateCaptions.CaptionOn = 'Sim'
         StateCaptions.CaptionOff = 'N'#227'o'
-        TabOrder = 4
+        TabOrder = 3
         OnClick = toggleParcelamentoClick
       end
       object cardParcela: TCardPanel
@@ -72,9 +77,9 @@ inherited frmContasPagar: TfrmContasPagar
         Width = 794
         Height = 275
         Alignment = taLeftJustify
-        ActiveCard = cardParcelamento
+        ActiveCard = cardParcelaUnica
         BevelOuter = bvNone
-        TabOrder = 5
+        TabOrder = 4
         object cardParcelaUnica: TCard
           Left = 0
           Top = 0
@@ -124,6 +129,7 @@ inherited frmContasPagar: TfrmContasPagar
             Top = 52
             Width = 289
             Height = 21
+            NumbersOnly = True
             TabOrder = 1
           end
           object edtValorParcela: TEdit
@@ -132,6 +138,7 @@ inherited frmContasPagar: TfrmContasPagar
             Width = 289
             Height = 21
             TabOrder = 2
+            OnExit = edtValorParcelaExit
           end
           object dateVencimento: TDateTimePicker
             Left = 121
@@ -170,6 +177,7 @@ inherited frmContasPagar: TfrmContasPagar
             Top = 22
             Width = 49
             Height = 21
+            NumbersOnly = True
             TabOrder = 0
           end
           object edtIntervaloDias: TEdit
@@ -177,6 +185,7 @@ inherited frmContasPagar: TfrmContasPagar
             Top = 62
             Width = 49
             Height = 21
+            NumbersOnly = True
             TabOrder = 1
           end
           object btnGerar: TButton
@@ -201,6 +210,7 @@ inherited frmContasPagar: TfrmContasPagar
             ImageIndex = 7
             Images = ImageList1
             TabOrder = 3
+            OnClick = btnLimparClick
           end
           object DBGrid2: TDBGrid
             Left = 23

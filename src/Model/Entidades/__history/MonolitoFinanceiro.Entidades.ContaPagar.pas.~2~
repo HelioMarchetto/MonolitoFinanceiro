@@ -1,0 +1,13 @@
+unit MonolitoFinanceiro.Entidades.ContaPagar;
+
+interface
+
+type
+  TModelContaPagar = class
+    private
+    public
+  end;
+
+implementation
+
+end.

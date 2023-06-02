@@ -50,7 +50,9 @@ type
     procedure toggleParcelamentoClick(Sender: TObject);
     procedure btnGerarClick(Sender: TObject);
     procedure btnLimparClick(Sender: TObject);
-    procedure edtValorCompraKeyPress(Sender: TObject; var Key: Char);
+    procedure FormCreate(Sender: TObject);
+    procedure edtValorCompraExit(Sender: TObject);
+    procedure edtValorParcelaExit(Sender: TObject);
   private
     { Private declarations }
     procedure CadastrarParcelamento;
@@ -97,10 +99,10 @@ begin
 
   edtNumeroDoc.Text := dmContasPagar.cdsContasPagarnumero_documento.AsString;
   edtDescricao.Text := dmContasPagar.cdsContasPagardescricao.AsString;
-  edtValorCompra.Text := dmContasPagar.cdsContasPagarvalor_compra.AsString;
+  edtValorCompra.Text := TUtilitarios.FormatarValor(dmContasPagar.cdsContasPagarvalor_compra.AsCurrency);
   dateCompra.Date := dmContasPagar.cdsContasPagardata_compra.AsDateTime;
   edtParcela.Text := dmContasPagar.cdsContasPagarparcela.AsString;
-  edtValorParcela.Text := dmContasPagar.cdsContasPagarvalor_parcela.AsString;
+  edtValorParcela.Text := TUtilitarios.FormatarValor(dmContasPagar.cdsContasPagarvalor_parcela.AsCurrency);
   dateVencimento.Date := dmContasPagar.cdsContasPagardata_vencimento.AsDateTime;
 end;
 
@@ -112,7 +114,7 @@ begin
     Abort;
   end;
 
-  if Application.MessageBox('Deseja realmente cancelar esse cocumento', 'Pergunta', MB_YESNO + MB_ICONQUESTION) <> mrYes then
+  if Application.MessageBox('Deseja realmente cancelar esse documento', 'Pergunta', MB_YESNO + MB_ICONQUESTION) <> mrYes then
     exit;
 
   try
@@ -158,7 +160,7 @@ begin
     abort;
   end;
 
-  LValorParcela := (Trunc(LValorCompra / LQuantidadeParcelas * 100)) / 100;
+  LValorParcela := TUtilitarios.TruncarValor(LValorCompra / LQuantidadeParcelas);// * 100)) / 100;
   LValorResiduo := LValorCompra - (LValorParcela * LQuantidadeParcelas);
 
   cdsParcelas.EmptyDataSet;
@@ -325,14 +327,21 @@ begin
 
 end;
 
-procedure TfrmContasPagar.edtValorCompraKeyPress(Sender: TObject;
-  var Key: Char);
+procedure TfrmContasPagar.edtValorCompraExit(Sender: TObject);
 begin
-  if Key = FormatSettings.ThousandSeparator then
-    Key := FormatSettings.DecimalSeparator;
+  edtValorCompra.Text := TUtilitarios.FormatarValor(edtValorCompra.Text);
+end;
 
-  if not (CharInSet(Key, ['0'..'9'])) then
-    Key := #0;
+procedure TfrmContasPagar.edtValorParcelaExit(Sender: TObject);
+begin
+  edtValorParcela.Text := TUtilitarios.FormatarValor(edtValorParcela.Text);
+end;
+
+procedure TfrmContasPagar.FormCreate(Sender: TObject);
+begin
+  inherited;
+  edtValorCompra.OnKeyPress := TUtilitarios.KeyPressValor;
+  edtValorParcela.OnKeyPress := TUtilitarios.KeyPressValor;
 end;
 
 procedure TfrmContasPagar.Pesquisar;

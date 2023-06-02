@@ -20,7 +20,10 @@ uses
   MonolitoFinanceiro.Model.ContasPagar in 'src\Model\MonolitoFinanceiro.Model.ContasPagar.pas' {dmContasPagar: TDataModule},
   MonolitoFinanceiro.View.ContasPagar in 'src\View\MonolitoFinanceiro.View.ContasPagar.pas' {frmContasPagar},
   MonolitoFinanceiro.Model.ContasReceber in 'src\Model\MonolitoFinanceiro.Model.ContasReceber.pas' {dmContasReceber: TDataModule},
-  MonolitoFinanceiro.View.ContasReceber in 'src\View\MonolitoFinanceiro.View.ContasReceber.pas' {frmContasReceber};
+  MonolitoFinanceiro.View.ContasReceber in 'src\View\MonolitoFinanceiro.View.ContasReceber.pas' {frmContasReceber},
+  MonolitoFinanceiro.View.ContasPagar.Baixar in 'src\View\MonolitoFinanceiro.View.ContasPagar.Baixar.pas' {frmContasPagarBaixar},
+  MonolitoFinanceiro.Entidades.ContaPagar in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaPagar.pas',
+  MonolitoFinanceiro.Entidades.ContaPagar.Detalhes in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaPagar.Detalhes.pas';
 
 {$R *.res}
 
@@ -40,5 +43,6 @@ begin
   Application.CreateForm(TfrmContasPagar, frmContasPagar);
   Application.CreateForm(TdmContasReceber, dmContasReceber);
   Application.CreateForm(TfrmContasReceber, frmContasReceber);
+  Application.CreateForm(TfrmContasPagarBaixar, frmContasPagarBaixar);
   Application.Run;
 end.

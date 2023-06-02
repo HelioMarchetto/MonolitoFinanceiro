@@ -1,5 +1,4 @@
 object dmContasPagar: TdmContasPagar
-  OldCreateOrder = False
   Height = 301
   Width = 394
   object sqlContasPagar: TFDQuery
