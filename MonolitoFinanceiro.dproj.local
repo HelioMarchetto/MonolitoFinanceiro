@@ -72,8 +72,8 @@
     <Transaction>2023/05/31 20:35:31.000.143,F:\Format\Cursos\Academia do Codigo\MonolitoFinanceiro\src\View\MonolitoFinanceiro.View.ContasPagar.Baixar.pas=F:\Format\Cursos\Academia do Codigo\MonolitoFinanceiro\Unit1.pas</Transaction>
     <Transaction>2023/05/31 21:08:31.000.803,=C:\Users\NETO\Desktop\Cursos\Academia do Codigo\MonolitoFinanceiro\Unit1.pas</Transaction>
     <Transaction>2023/05/31 21:09:05.000.725,C:\Users\NETO\Desktop\Cursos\Academia do Codigo\MonolitoFinanceiro\Unit1.pas=C:\Users\NETO\Desktop\Cursos\Academia do Codigo\MonolitoFinanceiro\src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaPagar.pas</Transaction>
-    <Transaction>2023/06/01 21:20:46.188,=C:\Users\NETO\Desktop\Cursos\Academia do Codigo\MonolitoFinanceiro\Unit1.pas</Transaction>
-    <Transaction>2023/06/01 21:24:39.158,C:\Users\NETO\Desktop\Cursos\Academia do Codigo\MonolitoFinanceiro\src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaPagar.Detalhes.pas=C:\Users\NETO\Desktop\Cursos\Academia do Codigo\MonolitoFinanceiro\Unit1.pas</Transaction>
+    <Transaction>2023/06/01 21:20:46.000.188,=C:\Users\NETO\Desktop\Cursos\Academia do Codigo\MonolitoFinanceiro\Unit1.pas</Transaction>
+    <Transaction>2023/06/01 21:24:39.000.158,C:\Users\NETO\Desktop\Cursos\Academia do Codigo\MonolitoFinanceiro\src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaPagar.Detalhes.pas=C:\Users\NETO\Desktop\Cursos\Academia do Codigo\MonolitoFinanceiro\Unit1.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="src"/>

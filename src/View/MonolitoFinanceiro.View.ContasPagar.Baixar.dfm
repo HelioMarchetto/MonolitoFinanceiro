@@ -1,6 +1,6 @@
 object frmContasPagarBaixar: TfrmContasPagarBaixar
-  Left = 0
-  Top = 0
+  Left = 654
+  Top = 228
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Baixar Contas a Pagar'

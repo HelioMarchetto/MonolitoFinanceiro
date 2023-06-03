@@ -3,7 +3,7 @@ unit Monolito.Financeiro.Utilitarios;
 interface
 
 uses
-  Vcl.DBGrids;
+  Vcl.DBGrids, FireDAC.Stan.Param;
 type
   TUtilitarios = class
     class Function GetID : String;
@@ -12,6 +12,7 @@ type
     class function FormatarValor(aValue: Currency; Decimais : Integer = 2): string; overload;
     class function FormatarValor(aValue: String; Decimais : Integer = 2): string; overload;
     class function TruncarValor(aValue: Currency; Decimais: Integer = 2): currency;
+    class procedure ValidarData(FieldParam : TFDParam; Data : TDateTime);
     class procedure KeyPressValor(Sender: TObject; var Key: Char);
   end;
 implementation
@@ -83,6 +84,13 @@ var
 begin
   LFator := Power(10, Decimais);
   Result := Trunc(aValue * LFator) / LFator;
+end;
+
+class procedure TUtilitarios.ValidarData(FieldParam: TFDParam; Data: TDateTime);
+begin
+  FieldParam.AsDateTime := Data;
+  if Data = 0 then
+    FieldParam.Clear;
 end;
 
 end.

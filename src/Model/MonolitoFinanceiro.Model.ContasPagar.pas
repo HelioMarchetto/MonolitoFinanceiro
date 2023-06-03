@@ -29,6 +29,8 @@ type
     cdsContasPagarstatus: TStringField;
   private
     { Private declarations }
+    procedure GravarContaPagar(ContaPagar: TModelContaPagar; SQLGravar: TFDQuery);
+    procedure GravarContaPagarDetalhes(ContaPagarDetalhes: TModelContaPagarDetalhe; SQLGravar: TFDQuery);
   public
     { Public declarations }
     function GetContaPagar(ID: String): TModelContaPagar;
@@ -67,36 +69,14 @@ begin
       ContaPagar.DataPagamento := Now;
     end;
 
+    BaixaPagar.ID := TUtilitarios.GetID;
+
     SQLGravar := TFDQuery.Create(nil);
     try
       SQLGravar.Connection := dmConexao.SQLConexao;
-      
-       SQL := 'UPDATE CONTAS_PAGAR SET VALOR_ABATIDO = :VALORABATIDO,' +
-              ' VALOR_PARCELA = :VALORPARCELA,' +
-              ' STATUS = :STATUS,' +
-              ' DATA_PAGAMENTO = :DATAPAGAMENTO' +
-              ' WHERE ID = :IDCONTAPAGAR;';
-       SQLGravar.SQL.Clear;
-       SQLGravar.SQL.Add(SQL);
-       SQLGravar.ParamByName('VALORABATIDO').AsCurrency := ContaPagar.ValorAbatido;
-       SQLGravar.ParamByName('VALORPARCELA').AsCurrency := ContaPagar.ValorParcela;
-       SQLGravar.ParamByName('STATUS').AsString := ContaPagar.Status;
-       SQLGravar.ParamByName('DATAPAGAMENTO').AsDateTime := ContaPagar.DataPagamento;
-       SQLGravar.ParamByName('IDCONTAPAGAR').AsString := ContaPagar.ID;
-
-       SQL := 'INSERT INTO CONTAS_PAGAR_DETALHES (ID, ID_CONTA_PAGAR,' +
-              ' DETALHES, VALOR, DATA, USUARIO) VALUES (:IDDETALHE,' +
-              ' :IDCONTAPAGAR, :DETALHES, :VALOR, :DATA, :USUARIO);';
-       SQLGravar.SQL.Add(SQL);
-       SQLGravar.ParamByName('IDDETALHE').AsString := TUtilitarios.GETID;
-       SQLGravar.ParamByName('DETALHES').AsString := BaixaPagar.Detalhes;
-       SQLGravar.ParamByName('VALOR').AsCurrency := BaixaPagar.Valor;
-       SQLGravar.ParamByName('DATA').AsDateTime := BaixaPagar.Data;
-       SQLGravar.ParamByName('USUARIO').AsString := BaixaPagar.Usuario;
-
-       SQLGravar.Prepare;
-       SQLGravar.ExecSQL;
-    finally
+      GravarContaPagar(ContaPagar, SQLGravar);
+      GravarContaPagarDetalhes(BaixaPagar, SQLGravar);
+     finally
       SQLGravar.Free;
     end;
     
@@ -137,6 +117,52 @@ begin
   finally
     SQLConsulta.Free;
   end;
+end;
+
+procedure TdmContasPagar.GravarContaPagar(ContaPagar: TModelContaPagar; SQLGravar: TFDQuery);
+var
+  SQL : string;
+begin
+  SQL := 'UPDATE CONTAS_PAGAR SET VALOR_ABATIDO = :VALORABATIDO,' +
+          ' VALOR_PARCELA = :VALORPARCELA,' +
+          ' STATUS = :STATUS,' +
+          ' DATA_PAGAMENTO = :DATAPAGAMENTO' +
+          ' WHERE ID = :IDCONTAPAGAR;';
+
+  SQLGravar.SQL.Clear;
+  SQLGravar.Params.Clear;
+
+  SQLGravar.SQL.Add(SQL);
+  SQLGravar.ParamByName('VALORABATIDO').AsCurrency := ContaPagar.ValorAbatido;
+  SQLGravar.ParamByName('VALORPARCELA').AsCurrency := ContaPagar.ValorParcela;
+  SQLGravar.ParamByName('STATUS').AsString := ContaPagar.Status;
+  TUtilitarios.ValidarData(SQLGravar.ParamByName('DATAPAGAMENTO'), ContaPagar.DataPagamento);
+  SQLGravar.ParamByName('IDCONTAPAGAR').AsString := ContaPagar.ID;
+  SQLGravar.Prepare;
+  SQLGravar.ExecSQL;
+end;
+
+procedure TdmContasPagar.GravarContaPagarDetalhes(ContaPagarDetalhes: TModelContaPagarDetalhe; SQLGravar: TFDQuery);
+var
+  SQL : string;
+begin
+  SQL := 'INSERT INTO CONTAS_PAGAR_DETALHES (ID, ID_CONTA_PAGAR,' +
+          ' DETALHES, VALOR, DATA, USUARIO) VALUES (:IDDETALHE,' +
+          ' :IDCONTAPAGAR, :DETALHES, :VALOR, :DATA, :USUARIO);';
+  SQLGravar.SQL.Clear;
+  SQLGravar.Params.Clear;
+
+  SQLGravar.SQL.Add(SQL);
+  SQLGravar.ParamByName('IDDETALHE').AsString := TUtilitarios.GETID;
+  SQLGravar.ParamByName('IDCONTAPAGAR').AsString := ContaPagarDetalhes.IDContaPagar;
+  SQLGravar.ParamByName('DETALHES').AsString := ContaPagarDetalhes.Detalhes;
+  SQLGravar.ParamByName('VALOR').AsCurrency := ContaPagarDetalhes.Valor;
+
+  SQLGravar.ParamByName('DATA').AsDateTime := ContaPagarDetalhes.Data;
+  SQLGravar.ParamByName('USUARIO').AsString := ContaPagarDetalhes.Usuario;
+
+  SQLGravar.Prepare;
+  SQLGravar.ExecSQL;
 end;
 
 end.
