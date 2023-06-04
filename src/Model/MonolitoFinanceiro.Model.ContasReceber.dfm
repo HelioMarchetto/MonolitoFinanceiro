@@ -1,5 +1,4 @@
 object dmContasReceber: TdmContasReceber
-  OldCreateOrder = False
   Height = 234
   Width = 332
   object sqlContasReceber: TFDQuery

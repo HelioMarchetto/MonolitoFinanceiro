@@ -176,12 +176,18 @@
             <Form>frmContasReceber</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="src\View\MonolitoFinanceiro.View.ContasPagar.Baixar.pas">
-            <Form>frmContasPagarBaixar</Form>
+        <DCCReference Include="src\View\MonolitoFinanceiro.View.ContasReceber.Baixar.pas">
+            <Form>frmContasReceberBaixar</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaPagar.pas"/>
         <DCCReference Include="src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaPagar.Detalhes.pas"/>
+        <DCCReference Include="src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaReceber.pas"/>
+        <DCCReference Include="src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaReceber.Detalhes.pas"/>
+        <DCCReference Include="src\View\MonolitoFinanceiro.View.ContasPagar.Baixar.pas">
+            <Form>frmContasPagarBaixar</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

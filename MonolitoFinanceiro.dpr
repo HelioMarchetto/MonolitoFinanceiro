@@ -21,9 +21,12 @@ uses
   MonolitoFinanceiro.View.ContasPagar in 'src\View\MonolitoFinanceiro.View.ContasPagar.pas' {frmContasPagar},
   MonolitoFinanceiro.Model.ContasReceber in 'src\Model\MonolitoFinanceiro.Model.ContasReceber.pas' {dmContasReceber: TDataModule},
   MonolitoFinanceiro.View.ContasReceber in 'src\View\MonolitoFinanceiro.View.ContasReceber.pas' {frmContasReceber},
-  MonolitoFinanceiro.View.ContasPagar.Baixar in 'src\View\MonolitoFinanceiro.View.ContasPagar.Baixar.pas' {frmContasPagarBaixar},
+  MonolitoFinanceiro.View.ContasReceber.Baixar in 'src\View\MonolitoFinanceiro.View.ContasReceber.Baixar.pas' {frmContasReceberBaixar},
   MonolitoFinanceiro.Entidades.ContaPagar in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaPagar.pas',
-  MonolitoFinanceiro.Entidades.ContaPagar.Detalhes in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaPagar.Detalhes.pas';
+  MonolitoFinanceiro.Entidades.ContaPagar.Detalhes in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaPagar.Detalhes.pas',
+  MonolitoFinanceiro.Entidades.ContaReceber in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaReceber.pas',
+  MonolitoFinanceiro.Entidades.ContaReceber.Detalhes in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaReceber.Detalhes.pas',
+  MonolitoFinanceiro.View.ContasPagar.Baixar in 'src\View\MonolitoFinanceiro.View.ContasPagar.Baixar.pas' {frmContasPagarBaixar};
 
 {$R *.res}
 
@@ -43,6 +46,7 @@ begin
   Application.CreateForm(TfrmContasPagar, frmContasPagar);
   Application.CreateForm(TdmContasReceber, dmContasReceber);
   Application.CreateForm(TfrmContasReceber, frmContasReceber);
+  Application.CreateForm(TfrmContasReceberBaixar, frmContasReceberBaixar);
   Application.CreateForm(TfrmContasPagarBaixar, frmContasPagarBaixar);
   Application.Run;
 end.

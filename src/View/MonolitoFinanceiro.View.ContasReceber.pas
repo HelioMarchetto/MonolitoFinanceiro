@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, MonolitoFinanceiro.View.CadastroPadrao,
   Data.DB, System.ImageList, Vcl.ImgList, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls,
-  Vcl.ExtCtrls, Vcl.WinXPanels, Datasnap.DBClient, Vcl.ComCtrls, Vcl.WinXCtrls;
+  Vcl.ExtCtrls, Vcl.WinXPanels, Datasnap.DBClient, Vcl.ComCtrls, Vcl.WinXCtrls,
+  Vcl.Menus;
 
 type
   TfrmContasReceber = class(TfrmCadastroPadrao)
@@ -42,6 +43,8 @@ type
     btnGerar: TButton;
     btnLimpar: TButton;
     DBGrid2: TDBGrid;
+    PopupMenu1: TPopupMenu;
+    mnuBaixar: TMenuItem;
     procedure btnAlterarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnGerarClick(Sender: TObject);
@@ -52,6 +55,7 @@ type
     procedure edtValorParcelaExit(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure toggleParcelamentoClick(Sender: TObject);
+    procedure mnuBaixarClick(Sender: TObject);
   private
     { Private declarations }
     procedure CadastrarParcelamento;
@@ -71,7 +75,7 @@ implementation
 
 uses MonolitoFinanceiro.Model.ContasReceber,
 Monolito.Financeiro.Utilitarios,
-System.DateUtils;
+System.DateUtils, MonolitoFinanceiro.View.ContasReceber.Baixar;
 
 { TfrmContasReceber }
 
@@ -337,6 +341,12 @@ procedure TfrmContasReceber.FormCreate(Sender: TObject);
 begin
   edtValorVenda.OnKeyPress := TUtilitarios.KeyPressValor;
   edtValorParcela.OnKeyPress := TUtilitarios.KeyPressValor;
+end;
+
+procedure TfrmContasReceber.mnuBaixarClick(Sender: TObject);
+begin
+  frmContasReceberBaixar.BaixarContaReceber(DataSource1.DataSet.FieldByName('ID').AsString);
+  Pesquisar;
 end;
 
 procedure TfrmContasReceber.Pesquisar;

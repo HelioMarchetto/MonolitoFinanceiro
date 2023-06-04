@@ -55,7 +55,6 @@ procedure TdmContasPagar.BaixarContaPagar(BaixaPagar: TModelContaPagarDetalhe);
 var
   ContaPagar : TModelContaPagar;
   SQLGravar : TFDQuery;
-  SQL : string;
 begin
   ContaPagar := GetContaPagar(BaixaPagar.IDContaPagar);
   try
