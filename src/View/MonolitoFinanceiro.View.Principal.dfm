@@ -11,11 +11,9 @@ object frmPrincipal: TfrmPrincipal
   Font.Name = 'Tahoma'
   Font.Style = []
   Menu = MainMenu1
-  OldCreateOrder = False
   Position = poScreenCenter
   WindowState = wsMaximized
   OnCreate = FormCreate
-  PixelsPerInch = 96
   TextHeight = 13
   object StatusBar1: TStatusBar
     Left = 0
@@ -29,6 +27,8 @@ object frmPrincipal: TfrmPrincipal
       item
         Width = 300
       end>
+    ExplicitTop = 398
+    ExplicitWidth = 642
   end
   object MainMenu1: TMainMenu
     Left = 32
@@ -53,6 +53,10 @@ object frmPrincipal: TfrmPrincipal
       object mnuContasReceber: TMenuItem
         Caption = 'Contas a Receber'
         OnClick = mnuContasReceberClick
+      end
+      object mnuContasReceberConsultar: TMenuItem
+        Caption = 'Consultar Contas a Receber'
+        OnClick = mnuContasReceberConsultarClick
       end
     end
     object mnuRelatorios: TMenuItem

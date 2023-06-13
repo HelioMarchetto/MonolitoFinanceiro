@@ -188,6 +188,10 @@
             <Form>frmContasPagarBaixar</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\View\MonolitoFinanceiro.View.ContasReceber.Consultar.pas">
+            <Form>frmContasReceberConsultar</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
