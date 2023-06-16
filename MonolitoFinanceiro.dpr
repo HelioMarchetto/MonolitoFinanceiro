@@ -27,7 +27,8 @@ uses
   MonolitoFinanceiro.Entidades.ContaReceber in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaReceber.pas',
   MonolitoFinanceiro.Entidades.ContaReceber.Detalhes in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaReceber.Detalhes.pas',
   MonolitoFinanceiro.View.ContasPagar.Baixar in 'src\View\MonolitoFinanceiro.View.ContasPagar.Baixar.pas' {frmContasPagarBaixar},
-  MonolitoFinanceiro.View.ContasReceber.Consultar in 'src\View\MonolitoFinanceiro.View.ContasReceber.Consultar.pas' {frmContasReceberConsultar};
+  MonolitoFinanceiro.View.ContasReceber.Consultar in 'src\View\MonolitoFinanceiro.View.ContasReceber.Consultar.pas' {frmContasReceberConsultar},
+  MonolitoFinanceiro.View.ContasReceber.Detalhes in 'src\View\MonolitoFinanceiro.View.ContasReceber.Detalhes.pas' {frmContasReceberDetalhes};
 
 {$R *.res}
 
@@ -50,5 +51,6 @@ begin
   Application.CreateForm(TfrmContasReceberBaixar, frmContasReceberBaixar);
   Application.CreateForm(TfrmContasPagarBaixar, frmContasPagarBaixar);
   Application.CreateForm(TfrmContasReceberConsultar, frmContasReceberConsultar);
+  Application.CreateForm(TfrmContasReceberDetalhes, frmContasReceberDetalhes);
   Application.Run;
 end.

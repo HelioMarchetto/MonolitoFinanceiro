@@ -1,0 +1,146 @@
+object dmContasReceber: TdmContasReceber
+  Height = 234
+  Width = 332
+  object sqlContasReceber: TFDQuery
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'SELECT * FROM CONTAS_RECEBER')
+    Left = 32
+    Top = 24
+  end
+  object dspContasReceber: TDataSetProvider
+    DataSet = sqlContasReceber
+    Options = [poAllowCommandText, poUseQuoteChar]
+    Left = 136
+    Top = 24
+  end
+  object cdsContasReceber: TClientDataSet
+    Aggregates = <>
+    CommandText = 'SELECT * FROM CONTAS_RECEBER'
+    Params = <>
+    ProviderName = 'dspContasReceber'
+    Left = 240
+    Top = 24
+    object cdsContasReceberid: TStringField
+      FieldName = 'id'
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object cdsContasRecebernumero_documento: TStringField
+      FieldName = 'numero_documento'
+      Required = True
+    end
+    object cdsContasReceberdescricao: TStringField
+      FieldName = 'descricao'
+      Size = 200
+    end
+    object cdsContasReceberparcela: TIntegerField
+      FieldName = 'parcela'
+      Required = True
+    end
+    object cdsContasRecebervalor_parcela: TFMTBCDField
+      FieldName = 'valor_parcela'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasRecebervalor_venda: TFMTBCDField
+      FieldName = 'valor_venda'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasRecebervalor_abatido: TFMTBCDField
+      FieldName = 'valor_abatido'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object cdsContasReceberdata_venda: TDateField
+      FieldName = 'data_venda'
+      Required = True
+    end
+    object cdsContasReceberdata_cadastro: TDateField
+      FieldName = 'data_cadastro'
+      Required = True
+    end
+    object cdsContasReceberdata_vencimento: TDateField
+      FieldName = 'data_vencimento'
+      Required = True
+    end
+    object cdsContasReceberdata_recebimento: TDateField
+      FieldName = 'data_recebimento'
+    end
+    object cdsContasReceberstatus: TStringField
+      FieldName = 'status'
+      Required = True
+      FixedChar = True
+      Size = 1
+    end
+  end
+  object sqlContasReceberDetalhes: TFDQuery
+    Active = True
+    Connection = FDConnection1
+    SQL.Strings = (
+      'SELECT * FROM CONTAS_RECEBER_DETALHES')
+    Left = 56
+    Top = 96
+    object sqlContasReceberDetalhesid: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object sqlContasReceberDetalhesid_conta_receber: TStringField
+      FieldName = 'id_conta_receber'
+      Origin = 'id_conta_receber'
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object sqlContasReceberDetalhesdetalhes: TStringField
+      FieldName = 'detalhes'
+      Origin = 'detalhes'
+      Required = True
+      Size = 200
+    end
+    object sqlContasReceberDetalhesvalor: TFMTBCDField
+      FieldName = 'valor'
+      Origin = 'valor'
+      Required = True
+      Precision = 18
+      Size = 2
+    end
+    object sqlContasReceberDetalhesdata: TDateField
+      FieldName = 'data'
+      Origin = 'data'
+      Required = True
+    end
+    object sqlContasReceberDetalhesusuario: TStringField
+      FieldName = 'usuario'
+      Origin = 'usuario'
+      Required = True
+      Size = 50
+    end
+    object sqlContasReceberDetalhesTotal: TAggregateField
+      FieldName = 'Total'
+      Active = True
+      DisplayName = ''
+      Expression = 'SUM(valor)'
+    end
+  end
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      
+        'Database=C:\Users\NETO\Desktop\Cursos\Academia do Codigo\Monolit' +
+        'oFinanceiro\db\SistemaFinanceiro.db'
+      'LockingMode=Normal'
+      'DriverID=SQLite')
+    Connected = True
+    Left = 216
+    Top = 104
+  end
+end

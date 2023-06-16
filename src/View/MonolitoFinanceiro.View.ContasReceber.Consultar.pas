@@ -49,6 +49,10 @@ type
     edtFiltroParcela: TEdit;
     Panel11: TPanel;
     btnFiltros: TButton;
+    Panel12: TPanel;
+    lblTotalRecebimentos: TLabel;
+    lblQuantidadelRegistros: TLabel;
+    btnDetalhes: TButton;
     procedure Button1Click(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure cbFiltroTipoDataKeyPress(Sender: TObject; var Key: Char);
@@ -56,6 +60,7 @@ type
     procedure btnFiltrosClick(Sender: TObject);
     procedure btnBaixarClick(Sender: TObject);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
+    procedure btnDetalhesClick(Sender: TObject);
   private
     { Private declarations }
     FFiltroPesquisa: string;
@@ -79,7 +84,9 @@ implementation
 {$R *.dfm}
 
 uses MonolitoFinanceiro.Model.ContasReceber,
-  MonolitoFinanceiro.View.ContasReceber.Baixar;
+  MonolitoFinanceiro.View.ContasReceber.Baixar,
+  Monolito.Financeiro.Utilitarios,
+  MonolitoFinanceiro.View.ContasReceber.Detalhes;
 
 procedure TfrmContasReceberConsultar.AdicionarFiltro(aValue: string);
 begin
@@ -91,6 +98,11 @@ begin
   frmContasReceberBaixar.BaixarContaReceber(DataSource1.DataSet.FieldByName('ID').AsString);
   if frmContasReceberBaixar.ModalResult = mrOk then
     dmContasReceber.cdsContasReceber.Refresh;
+end;
+
+procedure TfrmContasReceberConsultar.btnDetalhesClick(Sender: TObject);
+begin
+  frmContasReceberDetalhes.ExibirContasReceberDetalhes(DataSource1.DataSet.FieldByName('ID').AsString);
 end;
 
 procedure TfrmContasReceberConsultar.btnFecharClick(Sender: TObject);
@@ -233,6 +245,10 @@ begin
   dmContasReceber.cdsContasReceber.Close;
   dmContasReceber.cdsContasReceber.CommandText := 'SELECT * FROM CONTAS_RECEBER WHERE 1 = 1' + FFiltroPesquisa;
   dmContasReceber.cdsContasReceber.Open;
+
+  lblQuantidadelRegistros.Caption := Format('Quantidade de Registros: %d', [DataSource1.DataSet.RecordCount]);
+  lblTotalRecebimentos.Caption := 'Total de Recebimentos: R$ ' + TUtilitarios.FormatarValor(dmContasReceber.cdsContasReceber.FieldByName('Total').AsString);
+
 end;
 
 end.

@@ -8,7 +8,10 @@ uses
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   Datasnap.DBClient, Datasnap.Provider, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, MonolitoFinanceiro.Entidades.ContaReceber,
-  MonolitoFinanceiro.Entidades.ContaReceber.Detalhes;
+  MonolitoFinanceiro.Entidades.ContaReceber.Detalhes, FireDAC.UI.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Phys, FireDAC.Phys.SQLite,
+  FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
+  FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.VCLUI.Wait;
 
 type
   TdmContasReceber = class(TDataModule)
@@ -27,6 +30,16 @@ type
     cdsContasReceberdata_vencimento: TDateField;
     cdsContasReceberdata_recebimento: TDateField;
     cdsContasReceberstatus: TStringField;
+    sqlContasReceberDetalhes: TFDQuery;
+    sqlContasReceberDetalhesid: TStringField;
+    sqlContasReceberDetalhesid_conta_receber: TStringField;
+    sqlContasReceberDetalhesdetalhes: TStringField;
+    sqlContasReceberDetalhesvalor: TFMTBCDField;
+    sqlContasReceberDetalhesdata: TDateField;
+    sqlContasReceberDetalhesusuario: TStringField;
+    sqlContasReceberDetalhesTotal: TAggregateField;
+    cdsContasReceberTotal: TAggregateField;
+    sqlContasReceberDetalhesnome: TStringField;
   private
     { Private declarations }
     procedure GravarContaReceber(ContaReceber: TModelContaReceber; SQLGravar: TFDQuery);
