@@ -16,6 +16,7 @@ object dmContasPagar: TdmContasPagar
   end
   object cdsContasPagar: TClientDataSet
     Aggregates = <>
+    AggregatesActive = True
     CommandText = 'SELECT * FROM CONTAS_PAGAR'
     Params = <>
     ProviderName = 'dspContasPagar'
@@ -77,6 +78,75 @@ object dmContasPagar: TdmContasPagar
       Required = True
       FixedChar = True
       Size = 1
+    end
+    object cdsContasPagarTotal: TAggregateField
+      FieldName = 'Total'
+      Active = True
+      DisplayName = ''
+      Expression = 'SUM(valor_parcela)'
+    end
+  end
+  object sqlContasPagarDetalhes: TFDQuery
+    AggregatesActive = True
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'SELECT * FROM CONTAS_PAGAR_DETALHES')
+    Left = 64
+    Top = 88
+    object sqlContasPagarDetalhesid: TStringField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object sqlContasPagarDetalhesid_conta_receber: TStringField
+      FieldName = 'id_conta_pagar'
+      Origin = 'id_conta_receber'
+      Required = True
+      FixedChar = True
+      Size = 36
+    end
+    object sqlContasPagarDetalhesdetalhes: TStringField
+      DisplayLabel = 'Detalhes'
+      FieldName = 'detalhes'
+      Origin = 'detalhes'
+      Required = True
+      Size = 200
+    end
+    object sqlContasPagarDetalhesvalor: TFMTBCDField
+      DisplayLabel = 'Valor Abatido'
+      FieldName = 'valor'
+      Origin = 'valor'
+      Required = True
+      DisplayFormat = 'R$ ,0.00;R$ -,0.00;'
+      Precision = 18
+      Size = 2
+    end
+    object sqlContasPagarDetalhesdata: TDateField
+      DisplayLabel = 'Data da Baixa'
+      FieldName = 'data'
+      Origin = 'data'
+      Required = True
+    end
+    object sqlContasPagarDetalhesusuario: TStringField
+      DisplayLabel = 'Usu'#225'rio'
+      FieldName = 'usuario'
+      Origin = 'usuario'
+      Required = True
+      Size = 50
+    end
+    object sqlContasPagarDetalhesnome: TStringField
+      DisplayLabel = 'Usu'#225'rio'
+      FieldName = 'nome'
+      Size = 50
+    end
+    object sqlContasPagarDetalhesTotal: TAggregateField
+      FieldName = 'Total'
+      Active = True
+      DisplayName = ''
+      Expression = 'SUM(valor)'
     end
   end
 end

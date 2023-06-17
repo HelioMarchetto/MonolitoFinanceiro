@@ -61,6 +61,7 @@ type
     procedure btnBaixarClick(Sender: TObject);
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
     procedure btnDetalhesClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     FFiltroPesquisa: string;
@@ -197,7 +198,7 @@ begin
 
   if not TryStrToInt(edtFiltroParcela.Text, LParcela) then
   begin
-    Application.MessageBox('Número da parcelado inválido.', 'Atenção', MB_OK + MB_ICONWARNING);
+    Application.MessageBox('Número da parcela inválido.', 'Atenção', MB_OK + MB_ICONWARNING);
     abort;
   end;
 
@@ -217,6 +218,11 @@ begin
   2:  AdicionarFiltro('AND STATUS = ''B''');
   end;
 
+end;
+
+procedure TfrmContasReceberConsultar.FormShow(Sender: TObject);
+begin
+  Pesquisar;
 end;
 
 procedure TfrmContasReceberConsultar.HabilitarDatas(aValue: Boolean);

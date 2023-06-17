@@ -13,6 +13,7 @@ object frmContasReceberConsultar: TfrmContasReceberConsultar
   Font.Name = 'Segoe UI'
   Font.Style = []
   Position = poScreenCenter
+  OnShow = FormShow
   TextHeight = 17
   object Panel1: TPanel
     Left = 0

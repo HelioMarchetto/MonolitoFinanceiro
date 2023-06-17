@@ -27,6 +27,8 @@ uses
   MonolitoFinanceiro.Entidades.ContaReceber in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaReceber.pas',
   MonolitoFinanceiro.Entidades.ContaReceber.Detalhes in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.ContaReceber.Detalhes.pas',
   MonolitoFinanceiro.View.ContasPagar.Baixar in 'src\View\MonolitoFinanceiro.View.ContasPagar.Baixar.pas' {frmContasPagarBaixar},
+  MonolitoFinanceiro.View.ContasPagar.Consultar in 'src\View\MonolitoFinanceiro.View.ContasPagar.Consultar.pas' {frmContasPagarConsultar},
+  MonolitoFinanceiro.View.ContasPagar.Detalhes in 'src\View\MonolitoFinanceiro.View.ContasPagar.Detalhes.pas' {frmContasPagarDetalhes},
   MonolitoFinanceiro.View.ContasReceber.Consultar in 'src\View\MonolitoFinanceiro.View.ContasReceber.Consultar.pas' {frmContasReceberConsultar},
   MonolitoFinanceiro.View.ContasReceber.Detalhes in 'src\View\MonolitoFinanceiro.View.ContasReceber.Detalhes.pas' {frmContasReceberDetalhes};
 
@@ -50,6 +52,8 @@ begin
   Application.CreateForm(TfrmContasReceber, frmContasReceber);
   Application.CreateForm(TfrmContasReceberBaixar, frmContasReceberBaixar);
   Application.CreateForm(TfrmContasPagarBaixar, frmContasPagarBaixar);
+  Application.CreateForm(TfrmContasPagarConsultar, frmContasPagarConsultar);
+  Application.CreateForm(TfrmContasPagarDetalhes, frmContasPagarDetalhes);
   Application.CreateForm(TfrmContasReceberConsultar, frmContasReceberConsultar);
   Application.CreateForm(TfrmContasReceberDetalhes, frmContasReceberDetalhes);
   Application.Run;

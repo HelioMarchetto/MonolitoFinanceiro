@@ -27,6 +27,16 @@ type
     cdsContasPagardata_vencimento: TDateField;
     cdsContasPagardata_pagamento: TDateField;
     cdsContasPagarstatus: TStringField;
+    cdsContasPagarTotal: TAggregateField;
+    sqlContasPagarDetalhes: TFDQuery;
+    sqlContasPagarDetalhesid: TStringField;
+    sqlContasPagarDetalhesid_conta_receber: TStringField;
+    sqlContasPagarDetalhesdetalhes: TStringField;
+    sqlContasPagarDetalhesvalor: TFMTBCDField;
+    sqlContasPagarDetalhesdata: TDateField;
+    sqlContasPagarDetalhesusuario: TStringField;
+    sqlContasPagarDetalhesnome: TStringField;
+    sqlContasPagarDetalhesTotal: TAggregateField;
   private
     { Private declarations }
     procedure GravarContaPagar(ContaPagar: TModelContaPagar; SQLGravar: TFDQuery);

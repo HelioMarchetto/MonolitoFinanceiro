@@ -22,6 +22,7 @@ type
     mnuContasPagar: TMenuItem;
     mnuContasReceber: TMenuItem;
     mnuContasReceberConsultar: TMenuItem;
+    mnuContasPagarConsultar: TMenuItem;
     procedure mnuUsuariosClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
@@ -30,6 +31,7 @@ type
     procedure mnuContasPagarClick(Sender: TObject);
     procedure mnuContasReceberClick(Sender: TObject);
     procedure mnuContasReceberConsultarClick(Sender: TObject);
+    procedure mnuContasPagarConsultarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -46,7 +48,8 @@ uses
   Monolito.Financeiro.Model.Usuarios, MonolitoFinanceiro.View.RedefinirSenha,
   MonolitoFinanceiro.View.Caixa, MonolitoFinanceiro.View.Caixa.Saldo,
   MonolitoFinanceiro.View.ContasPagar, MonolitoFinanceiro.View.ContasReceber,
-  MonolitoFinanceiro.View.ContasReceber.Consultar;
+  MonolitoFinanceiro.View.ContasReceber.Consultar,
+  MonolitoFinanceiro.View.ContasPagar.Consultar;
 
 {$R *.dfm}
 
@@ -93,6 +96,11 @@ end;
 procedure TfrmPrincipal.mnuContasPagarClick(Sender: TObject);
 begin
   frmContasPagar.Show;
+end;
+
+procedure TfrmPrincipal.mnuContasPagarConsultarClick(Sender: TObject);
+begin
+  frmContasPagarConsultar.Show;
 end;
 
 procedure TfrmPrincipal.mnuContasReceberClick(Sender: TObject);

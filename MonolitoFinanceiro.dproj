@@ -188,6 +188,14 @@
             <Form>frmContasPagarBaixar</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\View\MonolitoFinanceiro.View.ContasPagar.Consultar.pas">
+            <Form>frmContasPagarConsultar</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\View\MonolitoFinanceiro.View.ContasPagar.Detalhes.pas">
+            <Form>frmContasPagarDetalhes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <DCCReference Include="src\View\MonolitoFinanceiro.View.ContasReceber.Consultar.pas">
             <Form>frmContasReceberConsultar</Form>
             <FormType>dfm</FormType>

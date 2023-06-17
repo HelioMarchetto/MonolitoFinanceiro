@@ -12,10 +12,8 @@ object frmCaixaSaldo: TfrmCaixaSaldo
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poScreenCenter
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object pnlPrincipal: TPanel
     Left = 0
@@ -25,6 +23,8 @@ object frmCaixaSaldo: TfrmCaixaSaldo
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 567
+    ExplicitHeight = 371
     object pnlPesquisar: TPanel
       Left = 0
       Top = 0
@@ -33,6 +33,7 @@ object frmCaixaSaldo: TfrmCaixaSaldo
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 0
+      ExplicitWidth = 567
       object Label1: TLabel
         Left = 248
         Top = 14
@@ -59,6 +60,7 @@ object frmCaixaSaldo: TfrmCaixaSaldo
         Images = ImageList1
         TabOrder = 0
         OnClick = Button1Click
+        ExplicitLeft = 471
       end
       object dateInicial: TDateTimePicker
         Left = 16
@@ -91,6 +93,8 @@ object frmCaixaSaldo: TfrmCaixaSaldo
       Padding.Right = 1
       Padding.Bottom = 1
       TabOrder = 1
+      ExplicitWidth = 567
+      ExplicitHeight = 306
       object StackPanel1: TStackPanel
         Left = 1
         Top = 10
@@ -141,6 +145,8 @@ object frmCaixaSaldo: TfrmCaixaSaldo
         ParentBackground = False
         Spacing = 10
         TabOrder = 0
+        ExplicitWidth = 565
+        ExplicitHeight = 295
         object Panel5: TPanel
           Left = 20
           Top = 10

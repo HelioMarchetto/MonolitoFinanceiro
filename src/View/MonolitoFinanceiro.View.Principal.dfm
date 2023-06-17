@@ -58,6 +58,10 @@ object frmPrincipal: TfrmPrincipal
         Caption = 'Consultar Contas a Receber'
         OnClick = mnuContasReceberConsultarClick
       end
+      object mnuContasPagarConsultar: TMenuItem
+        Caption = 'Consultar Contas a Pagar'
+        OnClick = mnuContasPagarConsultarClick
+      end
     end
     object mnuRelatorios: TMenuItem
       Caption = 'Relat'#243'rios'
