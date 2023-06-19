@@ -1,0 +1,200 @@
+unit MonolitoFinanceiro.Model.ContasReceber;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  Datasnap.DBClient, Datasnap.Provider, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client, MonolitoFinanceiro.Entidades.ContaReceber,
+  MonolitoFinanceiro.Entidades.ContaReceber.Detalhes, FireDAC.UI.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Phys, FireDAC.Phys.SQLite,
+  FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
+  FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.VCLUI.Wait;
+
+type
+  TdmContasReceber = class(TDataModule)
+    sqlContasReceber: TFDQuery;
+    dspContasReceber: TDataSetProvider;
+    cdsContasReceber: TClientDataSet;
+    cdsContasReceberid: TStringField;
+    cdsContasRecebernumero_documento: TStringField;
+    cdsContasReceberdescricao: TStringField;
+    cdsContasReceberparcela: TIntegerField;
+    cdsContasRecebervalor_parcela: TFMTBCDField;
+    cdsContasRecebervalor_venda: TFMTBCDField;
+    cdsContasRecebervalor_abatido: TFMTBCDField;
+    cdsContasReceberdata_venda: TDateField;
+    cdsContasReceberdata_cadastro: TDateField;
+    cdsContasReceberdata_vencimento: TDateField;
+    cdsContasReceberdata_recebimento: TDateField;
+    cdsContasReceberstatus: TStringField;
+    sqlContasReceberDetalhes: TFDQuery;
+    sqlContasReceberDetalhesid: TStringField;
+    sqlContasReceberDetalhesid_conta_receber: TStringField;
+    sqlContasReceberDetalhesdetalhes: TStringField;
+    sqlContasReceberDetalhesvalor: TFMTBCDField;
+    sqlContasReceberDetalhesdata: TDateField;
+    sqlContasReceberDetalhesusuario: TStringField;
+    sqlContasReceberDetalhesTotal: TAggregateField;
+    cdsContasReceberTotal: TAggregateField;
+    sqlContasReceberDetalhesnome: TStringField;
+  private
+    { Private declarations }
+    procedure GravarContaReceber(ContaReceber: TModelContaReceber; SQLGravar: TFDQuery);
+    procedure GravarContaReceberDetalhes(ContaReceberDetalhes: TModelContaReceberDetalhe; SQLGravar: TFDQuery);
+  public
+    { Public declarations }
+    function GetContaReceber(ID: String): TModelContaReceber;
+    procedure BaixarContaReceber(BaixaReceber : TModelContaReceberDetalhe);
+end;
+
+var
+  dmContasReceber: TdmContasReceber;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses MonolitoFinanceiro.Model.Conexao, Monolito.Financeiro.Utilitarios,
+  MonolitoFinanceiro.Entidades.Caixa.Lancamento;
+
+{$R *.dfm}
+
+{ TdmContasReceber }
+
+procedure TdmContasReceber.BaixarContaReceber(
+  BaixaReceber: TModelContaReceberDetalhe);
+var
+  ContaRebecer : TModelContaReceber;
+  SQLGravar : TFDQuery;
+  LancamentoCaixa : TModelCaixaLancamento;
+begin
+  ContaRebecer := GetContaReceber(BaixaReceber.IDContaReceber);
+  try
+    if ContaRebecer.ID = '' then
+      raise Exception.Create('Conta receber não encontrada');
+
+    ContaRebecer.ValorAbatido := ContaRebecer.ValorAbatido + BaixaReceber.Valor;
+    if ContaRebecer.ValorAbatido >= ContaRebecer.ValorParcela then
+    begin
+      ContaRebecer.Status := 'B';
+      ContaRebecer.DataRecebimento := Now;
+    end;
+
+    BaixaReceber.ID := TUtilitarios.GetID;
+
+
+
+    LancamentoCaixa := TModelCaixaLancamento.Create;
+    try
+      LancamentoCaixa.ID := TUtilitarios.GetID;
+      LancamentoCaixa.NumeroDoc := ContaReceber.Documento;
+      LancamentoCaixa.Descricao := Format('Baixa Conta Pagar Número %s - Parcela %d', [ContaReceber.Documento, ContaReceber.Parcela]);
+      LancamentoCaixa.Valor := BaixaReceber.Valor;
+      LancamentoCaixa.Tipo := 'R';
+      LancamentoCaixa.DataCadastro := Now;
+
+      SQLGravar := TFDQuery.Create(nil);
+      try
+        SQLGravar.Connection := dmConexao.SQLConexao;
+        GravarContaReceber(ContaRebecer, SQLGravar);
+        GravarContaReceberDetalhes(BaixaReceber, SQLGravar);
+        dmCaixa.GravarLancamentoCaixa(LancamentoCaixa, SQLGravar);
+       finally
+        SQLGravar.Free;
+      end;
+    finally
+      LancamentoCaixa.Free;
+    end;
+
+  finally
+    ContaRebecer.Free;
+  end;
+end;
+
+function TdmContasReceber.GetContaReceber(ID: String): TModelContaReceber;
+var
+  SQLConsulta: TFDQuery;
+begin
+  SQLConsulta := TFDQuery.Create(nil);
+  try
+    SQLConsulta.Connection := dmConexao.SQLConexao;
+    SQLConsulta.SQL.Clear;
+    SQLConsulta.SQL.Add('SELECT * FROM CONTAS_RECEBER WHERE ID = :ID');
+    SQLConsulta.ParamByName('ID').AsString := ID;
+    SQLConsulta.Open;
+    Result := TModelContaReceber.Create;
+    try
+      Result.ID := SQLConsulta.FieldByName('ID').AsString;
+      Result.Documento := SQLConsulta.FieldByName('NUMERO_DOCUMENTO').AsString;
+      Result.Descricao := SQLConsulta.FieldByName('DESCRICAO').AsString;
+      Result.Parcela := SQLConsulta.FieldByName('PARCELA').AsInteger;
+      Result.ValorParcela := SQLConsulta.FieldByName('VALOR_PARCELA').AsCurrency;
+      Result.ValorVenda := SQLConsulta.FieldByName('VALOR_VENDA').AsCurrency;
+      Result.ValorAbatido := SQLConsulta.FieldByName('VALOR_ABATIDO').AsCurrency;
+      Result.DataVenda := SQLConsulta.FieldByName('DATA_VENDA').AsDateTime;
+      Result.DataCadastro := SQLConsulta.FieldByName('DATA_CADASTRO').AsDateTime;
+      Result.DataVencimento := SQLConsulta.FieldByName('DATA_VENCIMENTO').AsDateTime;
+      Result.DataRecebimento := SQLConsulta.FieldByName('DATA_RECEBIMENTO').AsDateTime;
+      Result.Status := SQLConsulta.FieldByName('STATUS').AsString;
+    except
+      Result.Free;
+      raise;
+    end;
+  finally
+    SQLConsulta.Free;
+  end;
+
+end;
+
+procedure TdmContasReceber.GravarContaReceber(ContaReceber: TModelContaReceber;
+  SQLGravar: TFDQuery);
+var
+  SQL : string;
+begin
+  SQL := 'UPDATE CONTAS_RECEBER SET VALOR_ABATIDO = :VALORABATIDO,' +
+          ' VALOR_PARCELA = :VALORPARCELA,' +
+          ' STATUS = :STATUS,' +
+          ' DATA_RECEBIMENTO = :DATARECEBIMENTO' +
+          ' WHERE ID = :IDCONTARECEBER;';
+
+  SQLGravar.SQL.Clear;
+  SQLGravar.Params.Clear;
+
+  SQLGravar.SQL.Add(SQL);
+  SQLGravar.ParamByName('VALORABATIDO').AsCurrency := ContaReceber.ValorAbatido;
+  SQLGravar.ParamByName('VALORPARCELA').AsCurrency := ContaReceber.ValorParcela;
+  SQLGravar.ParamByName('STATUS').AsString := ContaReceber.Status;
+  TUtilitarios.ValidarData(SQLGravar.ParamByName('DATARECEBIMENTO'), ContaReceber.DataRecebimento);
+  SQLGravar.ParamByName('IDCONTARECEBER').AsString := ContaReceber.ID;
+  SQLGravar.Prepare;
+  SQLGravar.ExecSQL;
+end;
+
+procedure TdmContasReceber.GravarContaReceberDetalhes(
+  ContaReceberDetalhes: TModelContaReceberDetalhe; SQLGravar: TFDQuery);
+var
+  SQL : string;
+begin
+  SQL := 'INSERT INTO CONTAS_RECEBER_DETALHES (ID, ID_CONTA_RECEBER,' +
+          ' DETALHES, VALOR, DATA, USUARIO) VALUES (:IDDETALHE,' +
+          ' :IDCONTARECEBER, :DETALHES, :VALOR, :DATA, :USUARIO);';
+  SQLGravar.SQL.Clear;
+  SQLGravar.Params.Clear;
+
+  SQLGravar.SQL.Add(SQL);
+  SQLGravar.ParamByName('IDDETALHE').AsString := TUtilitarios.GETID;
+  SQLGravar.ParamByName('IDCONTARECEBER').AsString := ContaReceberDetalhes.IDContaReceber;
+  SQLGravar.ParamByName('DETALHES').AsString := ContaReceberDetalhes.Detalhes;
+  SQLGravar.ParamByName('VALOR').AsCurrency := ContaReceberDetalhes.Valor;
+
+  SQLGravar.ParamByName('DATA').AsDateTime := ContaReceberDetalhes.Data;
+  SQLGravar.ParamByName('USUARIO').AsString := ContaReceberDetalhes.Usuario;
+
+  SQLGravar.Prepare;
+  SQLGravar.ExecSQL;
+end;
+
+end.

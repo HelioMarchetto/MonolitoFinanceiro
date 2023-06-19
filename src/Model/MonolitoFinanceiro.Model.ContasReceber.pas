@@ -57,7 +57,9 @@ implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
-uses MonolitoFinanceiro.Model.Conexao, Monolito.Financeiro.Utilitarios;
+uses MonolitoFinanceiro.Model.Conexao, Monolito.Financeiro.Utilitarios,
+  MonolitoFinanceiro.Entidades.Caixa.Lancamento,
+  MonolitoFinanceiro.Model.Caixa;
 
 {$R *.dfm}
 
@@ -68,6 +70,7 @@ procedure TdmContasReceber.BaixarContaReceber(
 var
   ContaRebecer : TModelContaReceber;
   SQLGravar : TFDQuery;
+  LancamentoCaixa : TModelCaixaLancamento;
 begin
   ContaRebecer := GetContaReceber(BaixaReceber.IDContaReceber);
   try
@@ -83,19 +86,38 @@ begin
 
     BaixaReceber.ID := TUtilitarios.GetID;
 
-    SQLGravar := TFDQuery.Create(nil);
+    LancamentoCaixa := TModelCaixaLancamento.Create;
     try
-      SQLGravar.Connection := dmConexao.SQLConexao;
-      GravarContaReceber(ContaRebecer, SQLGravar);
-      GravarContaReceberDetalhes(BaixaReceber, SQLGravar);
-     finally
-      SQLGravar.Free;
+      LancamentoCaixa.ID := TUtilitarios.GetID;
+      LancamentoCaixa.NumeroDoc := ContaRebecer.Documento;
+      LancamentoCaixa.Descricao := Format('Baixa Conta Pagar Número %s - Parcela %d', [ContaRebecer.Documento, ContaRebecer.Parcela]);
+      LancamentoCaixa.Valor := BaixaReceber.Valor;
+      LancamentoCaixa.Tipo := 'R';
+      LancamentoCaixa.DataCadastro := Now;
+
+      SQLGravar := TFDQuery.Create(nil);
+      try
+        SQLGravar.Connection := dmConexao.SQLConexao;
+        dmConexao.SQLConexao.StartTransaction;
+        try
+          GravarContaReceber(ContaRebecer, SQLGravar);
+          GravarContaReceberDetalhes(BaixaReceber, SQLGravar);
+          dmCaixa.GravarLancamentoCaixa(LancamentoCaixa, SQLGravar);
+          dmConexao.SQLConexao.Commit;
+        except
+          dmConexao.SQLConexao.Rollback;
+          raise;
+        end;
+      finally
+        SQLGravar.Free;
+      end;
+    finally
+      LancamentoCaixa.Free;
     end;
 
   finally
     ContaRebecer.Free;
   end;
-
 end;
 
 function TdmContasReceber.GetContaReceber(ID: String): TModelContaReceber;

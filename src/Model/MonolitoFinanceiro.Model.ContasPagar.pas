@@ -53,7 +53,8 @@ var
 implementation
 
 uses
-  Monolito.Financeiro.Utilitarios;
+  Monolito.Financeiro.Utilitarios, MonolitoFinanceiro.Model.Caixa,
+  MonolitoFinanceiro.Entidades.Caixa.Lancamento;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
@@ -65,6 +66,7 @@ procedure TdmContasPagar.BaixarContaPagar(BaixaPagar: TModelContaPagarDetalhe);
 var
   ContaPagar : TModelContaPagar;
   SQLGravar : TFDQuery;
+  LancamentoCaixa: TModelCaixaLancamento;
 begin
   ContaPagar := GetContaPagar(BaixaPagar.IDContaPagar);
   try
@@ -80,15 +82,35 @@ begin
 
     BaixaPagar.ID := TUtilitarios.GetID;
 
-    SQLGravar := TFDQuery.Create(nil);
+    LancamentoCaixa := TModelCaixaLancamento.Create;
     try
-      SQLGravar.Connection := dmConexao.SQLConexao;
-      GravarContaPagar(ContaPagar, SQLGravar);
-      GravarContaPagarDetalhes(BaixaPagar, SQLGravar);
-     finally
-      SQLGravar.Free;
+      LancamentoCaixa.ID := TUtilitarios.GetID;
+      LancamentoCaixa.NumeroDoc := ContaPagar.Documento;
+      LancamentoCaixa.Descricao := Format('Baixa Conta Pagar Número %s - Parcela %d', [ContaPagar.Documento, ContaPagar.Parcela]);
+      LancamentoCaixa.Valor := BaixaPagar.Valor;
+      LancamentoCaixa.Tipo := 'D';
+      LancamentoCaixa.DataCadastro := Now;
+
+      SQLGravar := TFDQuery.Create(nil);
+      try
+        SQLGravar.Connection := dmConexao.SQLConexao;
+        SQLGravar.Connection.StartTransaction;
+        try
+          GravarContaPagar(ContaPagar, SQLGravar);
+          GravarContaPagarDetalhes(BaixaPagar, SQLGravar);
+          dmCaixa.GravarLancamentoCaixa(LancamentoCaixa, SQLGravar);
+          dmConexao.SQLConexao.Commit;
+        except
+          dmConexao.SQLConexao.Rollback;
+          raise;
+        end;
+
+       finally
+        SQLGravar.Free;
+      end;
+    finally
+      LancamentoCaixa.Free;
     end;
-    
   finally
     ContaPagar.Free;
   end;

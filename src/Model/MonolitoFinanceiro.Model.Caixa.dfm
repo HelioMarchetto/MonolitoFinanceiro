@@ -1,5 +1,4 @@
 object dmCaixa: TdmCaixa
-  OldCreateOrder = False
   Height = 322
   Width = 406
   object sqlCaixa: TFDQuery

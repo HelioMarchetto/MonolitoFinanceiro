@@ -30,7 +30,8 @@ uses
   MonolitoFinanceiro.View.ContasPagar.Consultar in 'src\View\MonolitoFinanceiro.View.ContasPagar.Consultar.pas' {frmContasPagarConsultar},
   MonolitoFinanceiro.View.ContasPagar.Detalhes in 'src\View\MonolitoFinanceiro.View.ContasPagar.Detalhes.pas' {frmContasPagarDetalhes},
   MonolitoFinanceiro.View.ContasReceber.Consultar in 'src\View\MonolitoFinanceiro.View.ContasReceber.Consultar.pas' {frmContasReceberConsultar},
-  MonolitoFinanceiro.View.ContasReceber.Detalhes in 'src\View\MonolitoFinanceiro.View.ContasReceber.Detalhes.pas' {frmContasReceberDetalhes};
+  MonolitoFinanceiro.View.ContasReceber.Detalhes in 'src\View\MonolitoFinanceiro.View.ContasReceber.Detalhes.pas' {frmContasReceberDetalhes},
+  MonolitoFinanceiro.Entidades.Caixa.Lancamento in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.Caixa.Lancamento.pas';
 
 {$R *.res}
 
