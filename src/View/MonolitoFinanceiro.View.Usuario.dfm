@@ -1,12 +1,14 @@
 inherited frmUsuarios: TfrmUsuarios
   Caption = 'Cadastro Usu'#225'rios'
   ClientHeight = 469
-  ExplicitHeight = 498
-  PixelsPerInch = 96
+  ClientWidth = 773
+  ExplicitHeight = 507
   TextHeight = 13
   inherited PnlPrincipal: TCardPanel
+    Width = 773
     Height = 469
-    ExplicitHeight = 469
+    ExplicitWidth = 769
+    ExplicitHeight = 468
     inherited cardCadastro: TCard
       Height = 467
       ExplicitHeight = 467
@@ -61,10 +63,18 @@ inherited frmUsuarios: TfrmUsuarios
     end
     inherited cardPesquisa: TCard
       Height = 467
-      ExplicitHeight = 467
+      ExplicitWidth = 767
+      ExplicitHeight = 466
+      inherited pnlPesquisa: TPanel
+        ExplicitWidth = 767
+        inherited Button1: TButton
+          ExplicitLeft = 670
+        end
+      end
       inherited pnlGrid: TPanel
         Height = 330
-        ExplicitHeight = 330
+        ExplicitWidth = 767
+        ExplicitHeight = 329
         inherited DBGrid1: TDBGrid
           Height = 328
           DataSource = DataSource1
@@ -92,7 +102,14 @@ inherited frmUsuarios: TfrmUsuarios
       end
       inherited pnlPesquisaBotoes: TPanel
         Top = 395
-        ExplicitTop = 395
+        ExplicitTop = 394
+        ExplicitWidth = 767
+        inherited btnFechar: TButton
+          ExplicitLeft = 670
+        end
+        inherited btnImprimir: TButton
+          OnClick = btnImprimirClick
+        end
       end
     end
   end
@@ -100,8 +117,8 @@ inherited frmUsuarios: TfrmUsuarios
     DataSet = dmUsuarios.cdsUsuarios
   end
   object PopupMenu1: TPopupMenu
-    Left = 681
-    Top = 242
+    Left = 689
+    Top = 274
     object mnuLimparSenha: TMenuItem
       Caption = 'Limpar Senha'
       OnClick = mnuLimparSenhaClick

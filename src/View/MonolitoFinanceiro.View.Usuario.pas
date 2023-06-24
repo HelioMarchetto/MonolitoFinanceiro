@@ -21,6 +21,7 @@ type
     procedure btnAlterarClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure mnuLimparSenhaClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,7 +37,8 @@ implementation
 
 {$R *.dfm}
 
-uses Monolito.Financeiro.Model.Usuarios, Monolito.Financeiro.Utilitarios, BCrypt;
+uses Monolito.Financeiro.Model.Usuarios, Monolito.Financeiro.Utilitarios, BCrypt,
+  MonolitoFinanceiro.View.Relatorios.Usuarios;
 
 procedure TfrmUsuarios.btnAlterarClick(Sender: TObject);
 begin
@@ -46,6 +48,12 @@ begin
   ToggleStatus.State := tssOn;
   if dmUsuarios.cdsUsuariosstatus.AsString = 'B' then
     ToggleStatus.State := tssOff;
+end;
+
+procedure TfrmUsuarios.btnImprimirClick(Sender: TObject);
+begin
+  relUsuarios.DataSource1.DataSet := DataSource1.DataSet;
+  relUsuarios.RLReport1.Preview;
 end;
 
 procedure TfrmUsuarios.btnSalvarClick(Sender: TObject);

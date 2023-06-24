@@ -205,6 +205,10 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\Model\Entidades\MonolitoFinanceiro.Entidades.Caixa.Lancamento.pas"/>
+        <DCCReference Include="src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.Usuarios.pas">
+            <Form>relUsuarios</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
