@@ -2,13 +2,15 @@ inherited frmContasReceber: TfrmContasReceber
   Caption = 'Cadastro de Contas a Receber'
   ClientWidth = 773
   OnCreate = FormCreate
+  ExplicitHeight = 558
   TextHeight = 13
   inherited PnlPrincipal: TCardPanel
     Width = 773
     ExplicitWidth = 769
-    ExplicitHeight = 520
+    ExplicitHeight = 519
     inherited cardCadastro: TCard
       Height = 518
+      ExplicitHeight = 518
       object Label9: TLabel [0]
         Left = 23
         Top = 148
@@ -39,6 +41,7 @@ inherited frmContasReceber: TfrmContasReceber
       end
       inherited Panel1: TPanel
         Top = 446
+        ExplicitTop = 446
       end
       object edtDescricao: TEdit
         Left = 120
@@ -234,7 +237,7 @@ inherited frmContasReceber: TfrmContasReceber
     inherited cardPesquisa: TCard
       Height = 518
       ExplicitWidth = 767
-      ExplicitHeight = 518
+      ExplicitHeight = 517
       inherited pnlPesquisa: TPanel
         ExplicitWidth = 767
         inherited Button1: TButton
@@ -244,7 +247,7 @@ inherited frmContasReceber: TfrmContasReceber
       inherited pnlGrid: TPanel
         Height = 381
         ExplicitWidth = 767
-        ExplicitHeight = 381
+        ExplicitHeight = 380
         inherited DBGrid1: TDBGrid
           Height = 379
           DataSource = DataSource1
@@ -328,10 +331,13 @@ inherited frmContasReceber: TfrmContasReceber
       end
       inherited pnlPesquisaBotoes: TPanel
         Top = 446
-        ExplicitTop = 446
+        ExplicitTop = 445
         ExplicitWidth = 767
         inherited btnFechar: TButton
           ExplicitLeft = 670
+        end
+        inherited btnImprimir: TButton
+          OnClick = btnImprimirClick
         end
       end
     end

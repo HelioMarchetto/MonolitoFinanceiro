@@ -1,0 +1,4 @@
+inherited relUsuarios: TrelUsuarios
+  Caption = 'relUsuarios'
+  TextHeight = 15
+end

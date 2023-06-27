@@ -1,0 +1,4 @@
+inherited relPadrao1: TrelPadrao1
+  Caption = 'relPadrao1'
+  TextHeight = 15
+end

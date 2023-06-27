@@ -4,29 +4,17 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, RLReport;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  MonolitoFinanceiro.View.Relatorios.Padrao, Data.DB, RLReport;
 
 type
-  TrelUsuarios = class(TForm)
-    RLReport1: TRLReport;
-    RLBand1: TRLBand;
-    RLLabel1: TRLLabel;
-    RLBand2: TRLBand;
-    RLLabel2: TRLLabel;
-    RLBand3: TRLBand;
-    RLLabel3: TRLLabel;
-    RLLabel4: TRLLabel;
-    RLLabel5: TRLLabel;
-    RLBand4: TRLBand;
+  TrelUsuarios = class(TrelPadrao)
     RLDBText1: TRLDBText;
     RLDBText2: TRLDBText;
     RLDBText3: TRLDBText;
-    DataSource1: TDataSource;
-    RLBand5: TRLBand;
-    RLSystemInfo1: TRLSystemInfo;
-    RLSystemInfo2: TRLSystemInfo;
-    lblNome: TRLLabel;
-    procedure RLReport1BeforePrint(Sender: TObject; var PrintIt: Boolean);
+    RLLabel3: TRLLabel;
+    RLLabel4: TRLLabel;
+    RLLabel5: TRLLabel;
   private
     { Private declarations }
   public
@@ -38,15 +26,6 @@ var
 
 implementation
 
-uses
-  Monolito.Financeiro.Model.Usuarios;
-
 {$R *.dfm}
-
-procedure TrelUsuarios.RLReport1BeforePrint(Sender: TObject;
-  var PrintIt: Boolean);
-begin
-  lblNome.Caption :=Format('Impresso por %s em %s', [dmUsuarios.GetUsuarioLogado.Nome, FormatDateTime('dd/mm/yyyy', Now)]);
-end;
 
 end.

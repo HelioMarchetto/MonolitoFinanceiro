@@ -205,8 +205,16 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="src\Model\Entidades\MonolitoFinanceiro.Entidades.Caixa.Lancamento.pas"/>
+        <DCCReference Include="src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.Padrao.pas">
+            <Form>relPadrao</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <DCCReference Include="src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.Usuarios.pas">
             <Form>relUsuarios</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.ContasReceber.pas">
+            <Form>relContasReceber</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

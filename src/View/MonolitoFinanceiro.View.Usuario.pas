@@ -37,7 +37,9 @@ implementation
 
 {$R *.dfm}
 
-uses Monolito.Financeiro.Model.Usuarios, Monolito.Financeiro.Utilitarios, BCrypt,
+uses Monolito.Financeiro.Model.Usuarios,
+  Monolito.Financeiro.Utilitarios,
+  BCrypt,
   MonolitoFinanceiro.View.Relatorios.Usuarios;
 
 procedure TfrmUsuarios.btnAlterarClick(Sender: TObject);
@@ -52,8 +54,8 @@ end;
 
 procedure TfrmUsuarios.btnImprimirClick(Sender: TObject);
 begin
-  relUsuarios.DataSource1.DataSet := DataSource1.DataSet;
-  relUsuarios.RLReport1.Preview;
+  relUsuarios.DataSet(DataSource1.DataSet);
+  relUsuarios.Preview;
 end;
 
 procedure TfrmUsuarios.btnSalvarClick(Sender: TObject);

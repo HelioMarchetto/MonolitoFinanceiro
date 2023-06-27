@@ -56,6 +56,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure toggleParcelamentoClick(Sender: TObject);
     procedure mnuBaixarClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
   private
     { Private declarations }
     procedure CadastrarParcelamento;
@@ -75,7 +76,8 @@ implementation
 
 uses MonolitoFinanceiro.Model.ContasReceber,
 Monolito.Financeiro.Utilitarios,
-System.DateUtils, MonolitoFinanceiro.View.ContasReceber.Baixar;
+System.DateUtils, MonolitoFinanceiro.View.ContasReceber.Baixar,
+  MonolitoFinanceiro.View.Relatorios.ContasReceber;
 
 { TfrmContasReceber }
 
@@ -176,6 +178,13 @@ begin
 
   end;
 
+end;
+
+procedure TfrmContasReceber.btnImprimirClick(Sender: TObject);
+begin
+  relContasReceber.DataSet(DataSource1.DataSet);
+  relContasReceber.Preview;
+  inherited;
 end;
 
 procedure TfrmContasReceber.btnIncluirClick(Sender: TObject);
