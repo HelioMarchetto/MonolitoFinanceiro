@@ -1,0 +1,5 @@
+inherited relContasReceberDetalhado: TrelContasReceberDetalhado
+  Caption = 'relContasReceberDetalhado'
+  ClientWidth = 781
+  TextHeight = 15
+end

@@ -1,0 +1,5 @@
+inherited relPadraoAgrupado1: TrelPadraoAgrupado1
+  Caption = 'relPadraoAgrupado1'
+  ClientWidth = 781
+  TextHeight = 15
+end

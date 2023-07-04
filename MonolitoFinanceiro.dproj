@@ -217,6 +217,14 @@
             <Form>relContasReceber</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.PadraoAgrupado.pas">
+            <Form>relPadraoAgrupado</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.ContasReceberDetalhado.pas">
+            <Form>relContasReceberDetalhado</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

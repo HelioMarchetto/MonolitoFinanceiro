@@ -1,0 +1,34 @@
+unit MonolitoFinanceiro.View.Relatorios.PadraoAgrupado;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport, Data.DB;
+
+type
+  TrelPadraoAgrupado = class(TForm)
+    RLReport1: TRLReport;
+    RLBand1: TRLBand;
+    RLLabel1: TRLLabel;
+    RLBand2: TRLBand;
+    RLLabel2: TRLLabel;
+    RLBand5: TRLBand;
+    RLSystemInfo1: TRLSystemInfo;
+    RLSystemInfo2: TRLSystemInfo;
+    lblNome: TRLLabel;
+    DataSource1: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  relPadraoAgrupado: TrelPadraoAgrupado;
+
+implementation
+
+{$R *.dfm}
+
+end.

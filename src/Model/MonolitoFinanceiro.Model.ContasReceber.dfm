@@ -152,4 +152,12 @@ object dmContasReceber: TdmContasReceber
       Expression = 'SUM(valor)'
     end
   end
+  object sqlRelContasReceberDetalhado: TFDQuery
+    AggregatesActive = True
+    Connection = dmConexao.SQLConexao
+    SQL.Strings = (
+      'SELECT * FROM CONTAS_RECEBER_DETALHES')
+    Left = 88
+    Top = 152
+  end
 end

@@ -34,7 +34,9 @@ uses
   MonolitoFinanceiro.Entidades.Caixa.Lancamento in 'src\Model\Entidades\MonolitoFinanceiro.Entidades.Caixa.Lancamento.pas',
   MonolitoFinanceiro.View.Relatorios.Padrao in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.Padrao.pas' {relPadrao},
   MonolitoFinanceiro.View.Relatorios.Usuarios in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.Usuarios.pas' {relUsuarios},
-  MonolitoFinanceiro.View.Relatorios.ContasReceber in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.ContasReceber.pas' {relContasReceber};
+  MonolitoFinanceiro.View.Relatorios.ContasReceber in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.ContasReceber.pas' {relContasReceber},
+  MonolitoFinanceiro.View.Relatorios.PadraoAgrupado in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.PadraoAgrupado.pas' {relPadraoAgrupado},
+  MonolitoFinanceiro.View.Relatorios.ContasReceberDetalhado in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.ContasReceberDetalhado.pas' {relContasReceberDetalhado};
 
 {$R *.res}
 
@@ -63,5 +65,7 @@ begin
   Application.CreateForm(TrelPadrao, relPadrao);
   Application.CreateForm(TrelUsuarios, relUsuarios);
   Application.CreateForm(TrelContasReceber, relContasReceber);
+  Application.CreateForm(TrelPadraoAgrupado, relPadraoAgrupado);
+  Application.CreateForm(TrelContasReceberDetalhado, relContasReceberDetalhado);
   Application.Run;
 end.

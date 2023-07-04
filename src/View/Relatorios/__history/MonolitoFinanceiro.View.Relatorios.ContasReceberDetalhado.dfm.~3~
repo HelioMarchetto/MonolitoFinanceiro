@@ -1,0 +1,46 @@
+inherited relContasReceberDetalhado: TrelContasReceberDetalhado
+  Caption = 'relContasReceberDetalhado'
+  ClientWidth = 781
+  TextHeight = 15
+  inherited RLReport1: TRLReport
+    DataSource = DataSource1
+    inherited RLBand5: TRLBand
+      Top = 297
+      ExplicitTop = 297
+    end
+    object RLGroup1: TRLGroup
+      Left = 38
+      Top = 123
+      Width = 718
+      Height = 174
+      DataFields = 'ID'
+      object RLBand3: TRLBand
+        Left = 0
+        Top = 0
+        Width = 718
+        Height = 32
+        BandType = btHeader
+      end
+      object RLBand4: TRLBand
+        Left = 0
+        Top = 32
+        Width = 718
+        Height = 32
+        BandType = btColumnHeader
+      end
+      object RLBand6: TRLBand
+        Left = 0
+        Top = 64
+        Width = 718
+        Height = 32
+      end
+      object RLBand7: TRLBand
+        Left = 0
+        Top = 96
+        Width = 718
+        Height = 32
+        BandType = btSummary
+      end
+    end
+  end
+end

@@ -40,6 +40,7 @@ type
     sqlContasReceberDetalhesTotal: TAggregateField;
     cdsContasReceberTotal: TAggregateField;
     sqlContasReceberDetalhesnome: TStringField;
+    sqlRelContasReceberDetalhado: TFDQuery;
   private
     { Private declarations }
     procedure GravarContaReceber(ContaReceber: TModelContaReceber; SQLGravar: TFDQuery);

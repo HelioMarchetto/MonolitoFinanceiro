@@ -53,6 +53,7 @@ type
     lblTotalRecebimentos: TLabel;
     lblQuantidadelRegistros: TLabel;
     btnDetalhes: TButton;
+    btnImprimir: TButton;
     procedure Button1Click(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure cbFiltroTipoDataKeyPress(Sender: TObject; var Key: Char);
@@ -62,6 +63,7 @@ type
     procedure DataSource1DataChange(Sender: TObject; Field: TField);
     procedure btnDetalhesClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
   private
     { Private declarations }
     FFiltroPesquisa: string;
@@ -87,7 +89,8 @@ implementation
 uses MonolitoFinanceiro.Model.ContasReceber,
   MonolitoFinanceiro.View.ContasReceber.Baixar,
   Monolito.Financeiro.Utilitarios,
-  MonolitoFinanceiro.View.ContasReceber.Detalhes;
+  MonolitoFinanceiro.View.ContasReceber.Detalhes,
+  MonolitoFinanceiro.View.Relatorios.ContasReceberDetalhado;
 
 procedure TfrmContasReceberConsultar.AdicionarFiltro(aValue: string);
 begin
@@ -114,6 +117,21 @@ end;
 procedure TfrmContasReceberConsultar.btnFiltrosClick(Sender: TObject);
 begin
   SplitView1.Opened := not SplitView1.Opened;
+end;
+
+procedure TfrmContasReceberConsultar.btnImprimirClick(Sender: TObject);
+var
+  SQL: String;
+begin
+  SQL := 'SELECT * FROM CONTAS_RECEBER' +
+        ' LEFT JOIN CONTAS_RECEBER_DETALHES ON CONTAS_RECEBER.ID = CONTAS_RECEBER_DETALHES.ID_CONTA_RECEBER' +
+        ' WHERE 1 = 1' + FFiltroPesquisa;
+  dmContasReceber.sqlRelContasReceberDetalhado.Close;
+  dmContasReceber.sqlRelContasReceberDetalhado.SQL.Clear;
+  dmContasReceber.sqlRelContasReceberDetalhado.SQL.Add(SQL);
+  dmContasReceber.sqlRelContasReceberDetalhado.Open;
+  relContasReceberDetalhado.DataSet(dmContasReceber.sqlRelContasReceberDetalhado);
+  relContasReceberDetalhado.Preview;
 end;
 
 procedure TfrmContasReceberConsultar.Button1Click(Sender: TObject);
