@@ -1,0 +1,238 @@
+inherited relCaixaExtrato: TrelCaixaExtrato
+  Caption = 'relCaixaExtrato'
+  ClientWidth = 781
+  TextHeight = 15
+  inherited RLReport1: TRLReport
+    DataSource = DataSource1
+    inherited RLBand2: TRLBand
+      Height = 42
+      ExplicitHeight = 42
+      inherited RLLabel2: TRLLabel
+        Left = 283
+        Width = 152
+        Caption = 'Extrato do Caixa'
+        ExplicitLeft = 283
+        ExplicitWidth = 152
+      end
+    end
+    inherited RLBand5: TRLBand
+      Top = 313
+      ExplicitTop = 313
+    end
+    object RLGroup1: TRLGroup
+      Left = 38
+      Top = 142
+      Width = 718
+      Height = 51
+      Borders.Sides = sdCustom
+      Borders.DrawLeft = False
+      Borders.DrawTop = False
+      Borders.DrawRight = False
+      Borders.DrawBottom = True
+      DataFields = 'data_cadastro'
+      object RLBand4: TRLBand
+        Left = 0
+        Top = 0
+        Width = 718
+        Height = 25
+        BandType = btHeader
+        object RLDBText1: TRLDBText
+          Left = 0
+          Top = 0
+          Width = 114
+          Height = 23
+          Align = faLeftTop
+          DataField = 'data_cadastro'
+          DataSource = DataSource1
+          Text = ''
+        end
+      end
+      object RLBand6: TRLBand
+        Left = 0
+        Top = 25
+        Width = 718
+        Height = 24
+        object RLDBText2: TRLDBText
+          Left = 335
+          Top = 0
+          Width = 218
+          Height = 23
+          Align = faTopOnly
+          AutoSize = False
+          DataField = 'descricao'
+          DataSource = DataSource1
+          Text = ''
+        end
+        object RLDBText3: TRLDBText
+          Left = 576
+          Top = 0
+          Width = 142
+          Height = 23
+          Align = faRightTop
+          DataField = 'valor'
+          DataSource = DataSource1
+          DisplayMask = 'R$ ,0.00;R$ -,0.00;'
+          Text = ''
+        end
+        object RLDBText4: TRLDBText
+          Left = 120
+          Top = 0
+          Width = 178
+          Height = 23
+          Align = faTopOnly
+          DataField = 'numero_documento'
+          DataSource = DataSource1
+          Text = ''
+        end
+      end
+    end
+    object RLBand3: TRLBand
+      Left = 38
+      Top = 117
+      Width = 718
+      Height = 25
+      BandType = btColumnHeader
+      object RLLabel3: TRLLabel
+        Left = 0
+        Top = 0
+        Width = 114
+        Height = 23
+        Align = faLeftTop
+        Caption = 'Data'
+      end
+      object RLLabel4: TRLLabel
+        Left = 120
+        Top = 0
+        Width = 185
+        Height = 23
+        Align = faTopOnly
+        Caption = 'Documento'
+      end
+      object RLLabel5: TRLLabel
+        Left = 335
+        Top = 0
+        Width = 218
+        Height = 23
+        Align = faTopOnly
+        Caption = 'Descri'#231#227'o'
+      end
+      object RLLabel6: TRLLabel
+        Left = 576
+        Top = 0
+        Width = 142
+        Height = 23
+        Align = faRightTop
+        Alignment = taRightJustify
+        Caption = 'Valor'
+      end
+    end
+    object RLBand7: TRLBand
+      Left = 38
+      Top = 193
+      Width = 718
+      Height = 120
+      BandType = btSummary
+      object RLPanel1: TRLPanel
+        Left = 0
+        Top = 0
+        Width = 718
+        Height = 25
+        Align = faTop
+        object RLLabel7: TRLLabel
+          Left = 387
+          Top = 0
+          Width = 131
+          Height = 23
+          Align = faTopOnly
+          Alignment = taRightJustify
+          Caption = 'Saldo Anterior'
+        end
+        object lblSaldoAnterior: TRLLabel
+          Left = 574
+          Top = 0
+          Width = 144
+          Height = 23
+          Align = faRightTop
+          Alignment = taRightJustify
+        end
+      end
+      object RLPanel2: TRLPanel
+        Left = 0
+        Top = 25
+        Width = 718
+        Height = 25
+        Align = faTop
+        object RLLabel9: TRLLabel
+          Left = 355
+          Top = 0
+          Width = 163
+          Height = 23
+          Align = faTopOnly
+          Alignment = taRightJustify
+          Caption = 'Total de Entradas'
+        end
+        object lblTotalEntradas: TRLLabel
+          Left = 570
+          Top = 0
+          Width = 148
+          Height = 23
+          Align = faRightTop
+          Alignment = taRightJustify
+        end
+      end
+      object RLPanel3: TRLPanel
+        Left = 0
+        Top = 75
+        Width = 718
+        Height = 25
+        Align = faTop
+        object RLLabel11: TRLLabel
+          Left = 415
+          Top = 0
+          Width = 103
+          Height = 23
+          Align = faTopOnly
+          Alignment = taRightJustify
+          Caption = 'Saldo Final'
+        end
+        object lblSaldoAtual: TRLLabel
+          Left = 602
+          Top = 0
+          Width = 116
+          Height = 23
+          Align = faRightTop
+          Alignment = taRightJustify
+          Caption = 'lblSaldoFinal'
+        end
+      end
+      object RLPanel4: TRLPanel
+        Left = 0
+        Top = 50
+        Width = 718
+        Height = 25
+        Align = faTop
+        object RLLabel13: TRLLabel
+          Left = 372
+          Top = 0
+          Width = 146
+          Height = 23
+          Align = faTopOnly
+          Alignment = taRightJustify
+          Caption = 'Total de Sa'#237'das'
+        end
+        object lblTotalSaidas: TRLLabel
+          Left = 589
+          Top = 0
+          Width = 129
+          Height = 23
+          Align = faRightTop
+          Alignment = taRightJustify
+        end
+      end
+    end
+  end
+  inherited DataSource1: TDataSource
+    Left = 697
+    Top = 386
+  end
+end

@@ -3,20 +3,20 @@ object dmCaixa: TdmCaixa
   Width = 406
   object sqlCaixa: TFDQuery
     Connection = dmConexao.SQLConexao
-    Left = 24
+    Left = 32
     Top = 24
   end
   object dspCaixa: TDataSetProvider
     DataSet = sqlCaixa
     Options = [poAllowCommandText, poUseQuoteChar]
-    Left = 96
+    Left = 104
     Top = 24
   end
   object cdsCaixa: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'dspCaixa'
-    Left = 168
+    Left = 176
     Top = 24
     object cdsCaixaID: TStringField
       FieldName = 'ID'
@@ -40,5 +40,10 @@ object dmCaixa: TdmCaixa
     object cdsCaixaDATA_CADASTRO: TDateField
       FieldName = 'DATA_CADASTRO'
     end
+  end
+  object sqlCaixaExtrato: TFDQuery
+    Connection = dmConexao.SQLConexao
+    Left = 32
+    Top = 104
   end
 end

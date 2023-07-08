@@ -36,11 +36,14 @@ uses
   MonolitoFinanceiro.View.Relatorios.Usuarios in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.Usuarios.pas' {relUsuarios},
   MonolitoFinanceiro.View.Relatorios.ContasReceber in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.ContasReceber.pas' {relContasReceber},
   MonolitoFinanceiro.View.Relatorios.PadraoAgrupado in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.PadraoAgrupado.pas' {relPadraoAgrupado},
-  MonolitoFinanceiro.View.Relatorios.ContasReceberDetalhado in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.ContasReceberDetalhado.pas' {relContasReceberDetalhado};
+  MonolitoFinanceiro.View.Relatorios.ContasReceberDetalhado in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.ContasReceberDetalhado.pas' {relContasReceberDetalhado},
+  MonolitoFinanceiro.View.Caixa.Extrato in 'src\View\MonolitoFinanceiro.View.Caixa.Extrato.pas' {frmCaixaExtrato},
+  MonolitoFinanceiro.View.Relatorios.Caixa.Extrato in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.Caixa.Extrato.pas' {relCaixaExtrato};
 
 {$R *.res}
 
 begin
+  ReportMemoryLeaksOnShutdown := True;
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TdmConexao, dmConexao);
@@ -67,5 +70,7 @@ begin
   Application.CreateForm(TrelContasReceber, relContasReceber);
   Application.CreateForm(TrelPadraoAgrupado, relPadraoAgrupado);
   Application.CreateForm(TrelContasReceberDetalhado, relContasReceberDetalhado);
+  Application.CreateForm(TfrmCaixaExtrato, frmCaixaExtrato);
+  Application.CreateForm(TrelCaixaExtrato, relCaixaExtrato);
   Application.Run;
 end.

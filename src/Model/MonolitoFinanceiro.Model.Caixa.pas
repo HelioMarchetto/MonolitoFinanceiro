@@ -21,6 +21,7 @@ type
     cdsCaixaVALOR: TFMTBCDField;
     cdsCaixaTIPO: TStringField;
     cdsCaixaDATA_CADASTRO: TDateField;
+    sqlCaixaExtrato: TFDQuery;
   private
     { Private declarations }
     function GetSaldoAnteriorCaixa(Data : TDate) : Currency;

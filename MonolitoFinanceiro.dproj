@@ -225,6 +225,14 @@
             <Form>relContasReceberDetalhado</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="src\View\MonolitoFinanceiro.View.Caixa.Extrato.pas">
+            <Form>frmCaixaExtrato</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.Caixa.Extrato.pas">
+            <Form>relCaixaExtrato</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

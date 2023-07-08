@@ -69,6 +69,10 @@ object frmPrincipal: TfrmPrincipal
         Caption = 'Resumo do Caixa'
         OnClick = mnuResumoCaixaClick
       end
+      object mnuCaixaExtrato: TMenuItem
+        Caption = 'Extrato do Caixa'
+        OnClick = mnuCaixaExtratoClick
+      end
     end
     object mnuAjuda: TMenuItem
       Caption = 'Ajuda'
