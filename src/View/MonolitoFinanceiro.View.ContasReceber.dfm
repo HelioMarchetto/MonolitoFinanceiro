@@ -6,7 +6,7 @@ inherited frmContasReceber: TfrmContasReceber
   TextHeight = 13
   inherited PnlPrincipal: TCardPanel
     Width = 773
-    ExplicitWidth = 769
+    ActiveCard = cardCadastro
     ExplicitHeight = 519
     inherited cardCadastro: TCard
       Height = 518
@@ -83,7 +83,7 @@ inherited frmContasReceber: TfrmContasReceber
         Width = 794
         Height = 275
         Alignment = taLeftJustify
-        ActiveCard = cardParcelaUnica
+        ActiveCard = cardParcelamento
         BevelOuter = bvNone
         TabOrder = 5
         object cardParcelaUnica: TCard
@@ -224,29 +224,23 @@ inherited frmContasReceber: TfrmContasReceber
             Width = 460
             Height = 137
             DataSource = dsParcelas
+            DrawingStyle = gdsGradient
             TabOrder = 4
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
+            OnDrawColumnCell = DBGrid2DrawColumnCell
           end
         end
       end
     end
     inherited cardPesquisa: TCard
       Height = 518
-      ExplicitWidth = 767
       ExplicitHeight = 517
-      inherited pnlPesquisa: TPanel
-        ExplicitWidth = 767
-        inherited Button1: TButton
-          ExplicitLeft = 670
-        end
-      end
       inherited pnlGrid: TPanel
         Height = 381
-        ExplicitWidth = 767
         ExplicitHeight = 380
         inherited DBGrid1: TDBGrid
           Height = 379
@@ -283,28 +277,24 @@ inherited frmContasReceber: TfrmContasReceber
               Expanded = False
               FieldName = 'valor_parcela'
               Title.Caption = 'Valor Parcela'
-              Width = 64
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'valor_venda'
               Title.Caption = 'Valor Venda'
-              Width = 64
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'data_vencimento'
               Title.Caption = 'Data Vencimento'
-              Width = 64
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'valor_abatido'
               Title.Caption = 'Valor Abatido'
-              Width = 64
               Visible = True
             end
             item
@@ -317,14 +307,12 @@ inherited frmContasReceber: TfrmContasReceber
               Expanded = False
               FieldName = 'data_cadastro'
               Title.Caption = 'Data Cadastro'
-              Width = 64
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'data_recebimento'
               Title.Caption = 'Data Recebimento'
-              Width = 64
               Visible = True
             end>
         end
@@ -332,10 +320,6 @@ inherited frmContasReceber: TfrmContasReceber
       inherited pnlPesquisaBotoes: TPanel
         Top = 446
         ExplicitTop = 445
-        ExplicitWidth = 767
-        inherited btnFechar: TButton
-          ExplicitLeft = 670
-        end
         inherited btnImprimir: TButton
           OnClick = btnImprimirClick
         end

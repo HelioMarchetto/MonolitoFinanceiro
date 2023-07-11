@@ -57,6 +57,8 @@ type
     procedure toggleParcelamentoClick(Sender: TObject);
     procedure mnuBaixarClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
+    procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
     procedure CadastrarParcelamento;
@@ -334,6 +336,13 @@ begin
   dmContasReceber.cdsContasRecebervalor_parcela.AsCurrency := LValorParcela;
   dmContasReceber.cdsContasReceberdata_vencimento.AsDateTime := dateVencimento.DateTime;
   dmContasReceber.cdsContasReceberdata_venda.AsDateTime := dateVenda.Date;
+end;
+
+procedure TfrmContasReceber.DBGrid2DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  inherited;
+  TUtilitarios.ZebrarDBGrid(TDBGrid(Sender), Rect, Column, State);
 end;
 
 procedure TfrmContasReceber.edtValorParcelaExit(Sender: TObject);

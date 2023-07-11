@@ -56,6 +56,9 @@ type
     procedure edtValorCompraExit(Sender: TObject);
     procedure edtValorParcelaExit(Sender: TObject);
     procedure mnuBaixarClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
+    procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
     procedure CadastrarParcelamento;
@@ -73,7 +76,8 @@ implementation
 
 uses
   Monolito.Financeiro.Utilitarios,
-  System.DateUtils, MonolitoFinanceiro.View.ContasPagar.Baixar;
+  System.DateUtils, MonolitoFinanceiro.View.ContasPagar.Baixar,
+  MonolitoFinanceiro.View.Relatorios.ContasPagar;
 
 {$R *.dfm}
 
@@ -177,6 +181,12 @@ begin
 
   end;
 
+end;
+
+procedure TfrmContasPagar.btnImprimirClick(Sender: TObject);
+begin
+  relContasPagar.DataSet(DataSource1.DataSet);
+  relContasPagar.Preview;
 end;
 
 procedure TfrmContasPagar.btnIncluirClick(Sender: TObject);
@@ -328,6 +338,13 @@ begin
   dmContasPagar.cdsContasPagardata_vencimento.AsDateTime := dateVencimento.DateTime;
   dmContasPagar.cdsContasPagardata_compra.AsDateTime := dateCompra.Date;
 
+end;
+
+procedure TfrmContasPagar.DBGrid2DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  inherited;
+  TUtilitarios.ZebrarDBGrid(TDBGrid(Sender), Rect, Column, State);
 end;
 
 procedure TfrmContasPagar.edtValorCompraExit(Sender: TObject);

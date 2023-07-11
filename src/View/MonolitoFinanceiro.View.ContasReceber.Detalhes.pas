@@ -39,6 +39,8 @@ type
     lblTotalDetalhes: TLabel;
     lblQuantidadeRegistros: TLabel;
     procedure btnFecharClick(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -59,6 +61,12 @@ uses MonolitoFinanceiro.Model.ContasReceber, MonolitoFinanceiro.Entidades.ContaR
 procedure TfrmContasReceberDetalhes.btnFecharClick(Sender: TObject);
 begin
   ModalResult := mrOk;
+end;
+
+procedure TfrmContasReceberDetalhes.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  TUtilitarios.ZebrarDBGrid(TDBGrid(Sender), Rect, Column, State);
 end;
 
 procedure TfrmContasReceberDetalhes.ExibirContasReceberDetalhes(

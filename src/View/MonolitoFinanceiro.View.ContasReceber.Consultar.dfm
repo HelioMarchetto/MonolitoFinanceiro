@@ -263,6 +263,7 @@ object frmContasReceberConsultar: TfrmContasReceberConsultar
         Height = 311
         Align = alClient
         DataSource = DataSource1
+        DrawingStyle = gdsGradient
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -270,6 +271,7 @@ object frmContasReceberConsultar: TfrmContasReceberConsultar
         TitleFont.Height = -13
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
+        OnDrawColumnCell = DBGrid1DrawColumnCell
         Columns = <
           item
             Expanded = False

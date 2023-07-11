@@ -22,6 +22,7 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -35,7 +36,7 @@ var
 implementation
 
 uses
-  Monolito.Financeiro.Utilitarios;
+  Monolito.Financeiro.Utilitarios, MonolitoFinanceiro.View.Relatorios.Caixa;
 
 {$R *.dfm}
 
@@ -51,6 +52,12 @@ begin
     RadioGroup1.ItemIndex := 0
   else
     RadioGroup1.ItemIndex := 1;
+end;
+
+procedure TfrmCaixa.btnImprimirClick(Sender: TObject);
+begin
+  relCaixa.DataSet(DataSource1.DataSet);
+  relCaixa.Preview;
 end;
 
 procedure TfrmCaixa.btnSalvarClick(Sender: TObject);

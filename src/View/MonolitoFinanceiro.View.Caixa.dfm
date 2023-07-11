@@ -3,15 +3,14 @@ inherited frmCaixa: TfrmCaixa
   ClientHeight = 506
   ClientWidth = 719
   OnCreate = FormCreate
-  ExplicitWidth = 725
-  ExplicitHeight = 535
-  PixelsPerInch = 96
+  ExplicitWidth = 731
+  ExplicitHeight = 544
   TextHeight = 13
   inherited PnlPrincipal: TCardPanel
     Width = 719
     Height = 506
-    ExplicitWidth = 719
-    ExplicitHeight = 506
+    ExplicitWidth = 715
+    ExplicitHeight = 505
     inherited cardCadastro: TCard
       Width = 717
       Height = 504
@@ -89,11 +88,11 @@ inherited frmCaixa: TfrmCaixa
     inherited cardPesquisa: TCard
       Width = 717
       Height = 504
-      ExplicitWidth = 717
-      ExplicitHeight = 504
+      ExplicitWidth = 713
+      ExplicitHeight = 503
       inherited pnlPesquisa: TPanel
         Width = 717
-        ExplicitWidth = 717
+        ExplicitWidth = 713
         object Label5: TLabel [1]
           Left = 397
           Top = 12
@@ -107,7 +106,7 @@ inherited frmCaixa: TfrmCaixa
         end
         inherited Button1: TButton
           Left = 620
-          ExplicitLeft = 620
+          ExplicitLeft = 616
         end
         object cbTipo: TComboBox
           Left = 397
@@ -127,8 +126,8 @@ inherited frmCaixa: TfrmCaixa
       inherited pnlGrid: TPanel
         Width = 717
         Height = 367
-        ExplicitWidth = 717
-        ExplicitHeight = 367
+        ExplicitWidth = 713
+        ExplicitHeight = 366
         inherited DBGrid1: TDBGrid
           Width = 715
           Height = 365
@@ -177,11 +176,14 @@ inherited frmCaixa: TfrmCaixa
       inherited pnlPesquisaBotoes: TPanel
         Top = 432
         Width = 717
-        ExplicitTop = 432
-        ExplicitWidth = 717
+        ExplicitTop = 431
+        ExplicitWidth = 713
         inherited btnFechar: TButton
           Left = 620
-          ExplicitLeft = 620
+          ExplicitLeft = 616
+        end
+        inherited btnImprimir: TButton
+          OnClick = btnImprimirClick
         end
       end
     end

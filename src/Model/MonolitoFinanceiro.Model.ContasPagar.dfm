@@ -43,18 +43,21 @@ object dmContasPagar: TdmContasPagar
     object cdsContasPagarvalor_parcela: TFMTBCDField
       FieldName = 'valor_parcela'
       Required = True
+      DisplayFormat = 'R$ ,0.00;R$ -,0.00;'
       Precision = 18
       Size = 2
     end
     object cdsContasPagarvalor_compra: TFMTBCDField
       FieldName = 'valor_compra'
       Required = True
+      DisplayFormat = 'R$ ,0.00;R$ -,0.00;'
       Precision = 18
       Size = 2
     end
     object cdsContasPagarvalor_abatido: TFMTBCDField
       FieldName = 'valor_abatido'
       Required = True
+      DisplayFormat = 'R$ ,0.00;R$ -,0.00;'
       Precision = 18
       Size = 2
     end

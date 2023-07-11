@@ -3,7 +3,7 @@ unit Monolito.Financeiro.Utilitarios;
 interface
 
 uses
-  Vcl.DBGrids, FireDAC.Stan.Param;
+  Vcl.DBGrids, FireDAC.Stan.Param, Vcl.Grids, System.Types;
 type
   TUtilitarios = class
     class Function GetID : String;
@@ -14,6 +14,7 @@ type
     class function TruncarValor(aValue: Currency; Decimais: Integer = 2): currency;
     class procedure ValidarData(FieldParam : TFDParam; Data : TDateTime);
     class procedure KeyPressValor(Sender: TObject; var Key: Char);
+    class procedure ZebrarDBGrid(Sender: TDBGrid; Rect: TRect; Column: TColumn; State: TGridDrawState);
   end;
 implementation
 
@@ -91,6 +92,20 @@ begin
   FieldParam.AsDateTime := Data;
   if Data = 0 then
     FieldParam.Clear;
+end;
+
+class procedure TUtilitarios.ZebrarDBGrid(Sender: TDBGrid; Rect: TRect;
+  Column: TColumn; State: TGridDrawState);
+begin
+  if not Odd(Sender.DataSource.DataSet.RecNo) then
+  begin
+    if not (gdSelected in State) then
+    begin
+      Sender.Canvas.Brush.Color := $00FFEFDF;
+      Sender.Canvas.FillRect(Rect);
+      Sender.DefaultDrawDataCell(Rect, Column.Field, State);
+    end;
+  end;
 end;
 
 end.

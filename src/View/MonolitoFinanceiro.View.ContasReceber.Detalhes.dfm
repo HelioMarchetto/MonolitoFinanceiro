@@ -41,6 +41,7 @@ object frmContasReceberDetalhes: TfrmContasReceberDetalhes
         Height = 282
         Align = alClient
         DataSource = DataSource1
+        DrawingStyle = gdsGradient
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -48,6 +49,7 @@ object frmContasReceberDetalhes: TfrmContasReceberDetalhes
         TitleFont.Height = -12
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
+        OnDrawColumnCell = DBGrid1DrawColumnCell
         Columns = <
           item
             Expanded = False
@@ -109,7 +111,7 @@ object frmContasReceberDetalhes: TfrmContasReceberDetalhes
         Padding.Left = 5
         Padding.Top = 5
         TabOrder = 1
-        ExplicitLeft = -6
+        ExplicitWidth = 635
         object lblTotalDetalhes: TLabel
           Left = 5
           Top = 20
@@ -269,7 +271,6 @@ object frmContasReceberDetalhes: TfrmContasReceberDetalhes
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 1
-          ExplicitWidth = 100
           object lblValorVenda: TLabel
             Left = 0
             Top = 15
@@ -292,7 +293,7 @@ object frmContasReceberDetalhes: TfrmContasReceberDetalhes
             Width = 189
             Height = 15
             Align = alTop
-            ExplicitWidth = 105
+            ExplicitWidth = 3
           end
         end
       end

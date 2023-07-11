@@ -37,6 +37,8 @@ type
     procedure Button1Click(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
     procedure HabilitarBotoes;
@@ -52,7 +54,7 @@ var
 implementation
 
 uses
-  Datasnap.DBClient;
+  Datasnap.DBClient, Monolito.Financeiro.Utilitarios;
 
 {$R *.dfm}
 
@@ -115,6 +117,12 @@ end;
 procedure TfrmCadastroPadrao.Button1Click(Sender: TObject);
 begin
   Pesquisar;
+end;
+
+procedure TfrmCadastroPadrao.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  TUtilitarios.ZebrarDBGrid(TDBGrid(Sender), Rect, Column, State);
 end;
 
 procedure TfrmCadastroPadrao.FormShow(Sender: TObject);

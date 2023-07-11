@@ -1,5 +1,7 @@
 inherited relContasReceber: TrelContasReceber
   Caption = 'relContasReceber'
+  ExplicitWidth = 785
+  ExplicitHeight = 616
   TextHeight = 15
   inherited RLReport1: TRLReport
     inherited RLBand2: TRLBand

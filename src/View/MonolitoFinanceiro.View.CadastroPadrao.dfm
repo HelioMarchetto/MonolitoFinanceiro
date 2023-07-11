@@ -12,10 +12,8 @@ object frmCadastroPadrao: TfrmCadastroPadrao
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poScreenCenter
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object PnlPrincipal: TCardPanel
     Left = 0
@@ -26,6 +24,8 @@ object frmCadastroPadrao: TfrmCadastroPadrao
     ActiveCard = cardPesquisa
     Caption = 'PnlPrincipal'
     TabOrder = 0
+    ExplicitWidth = 769
+    ExplicitHeight = 520
     object cardCadastro: TCard
       Left = 1
       Top = 1
@@ -79,6 +79,8 @@ object frmCadastroPadrao: TfrmCadastroPadrao
       Caption = 'cardPesquisa'
       CardIndex = 1
       TabOrder = 1
+      ExplicitWidth = 767
+      ExplicitHeight = 518
       object pnlPesquisa: TPanel
         Left = 0
         Top = 0
@@ -86,6 +88,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
         Height = 65
         Align = alTop
         TabOrder = 0
+        ExplicitWidth = 767
         object Label1: TLabel
           Left = 24
           Top = 12
@@ -113,6 +116,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           Images = ImageList1
           TabOrder = 1
           OnClick = Button1Click
+          ExplicitLeft = 670
         end
       end
       object pnlGrid: TPanel
@@ -122,12 +126,15 @@ object frmCadastroPadrao: TfrmCadastroPadrao
         Height = 382
         Align = alClient
         TabOrder = 1
+        ExplicitWidth = 767
+        ExplicitHeight = 381
         object DBGrid1: TDBGrid
           Left = 1
           Top = 1
           Width = 769
           Height = 380
           Align = alClient
+          DrawingStyle = gdsGradient
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
@@ -135,6 +142,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           TitleFont.Height = -11
           TitleFont.Name = 'Tahoma'
           TitleFont.Style = []
+          OnDrawColumnCell = DBGrid1DrawColumnCell
         end
       end
       object pnlPesquisaBotoes: TPanel
@@ -144,6 +152,8 @@ object frmCadastroPadrao: TfrmCadastroPadrao
         Height = 72
         Align = alBottom
         TabOrder = 2
+        ExplicitTop = 446
+        ExplicitWidth = 767
         object btnFechar: TButton
           Left = 674
           Top = 1
@@ -157,6 +167,7 @@ object frmCadastroPadrao: TfrmCadastroPadrao
           Images = ImageList1
           TabOrder = 0
           OnClick = btnFecharClick
+          ExplicitLeft = 670
         end
         object btnIncluir: TButton
           Left = 1

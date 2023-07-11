@@ -64,6 +64,8 @@ type
     procedure btnDetalhesClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
   private
     { Private declarations }
     FFiltroPesquisa: string;
@@ -158,6 +160,12 @@ procedure TfrmContasReceberConsultar.DataSource1DataChange(Sender: TObject;
   Field: TField);
 begin
   btnBaixar.Enabled := DataSource1.DataSet.FieldByName('STATUS').AsString = 'A';
+end;
+
+procedure TfrmContasReceberConsultar.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+begin
+  TUtilitarios.ZebrarDBGrid(TDBGrid(Sender), Rect, Column, State);
 end;
 
 procedure TfrmContasReceberConsultar.FiltrarData;

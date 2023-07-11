@@ -263,6 +263,7 @@ object frmContasPagarConsultar: TfrmContasPagarConsultar
         Height = 311
         Align = alClient
         DataSource = DataSource1
+        DrawingStyle = gdsGradient
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -270,6 +271,7 @@ object frmContasPagarConsultar: TfrmContasPagarConsultar
         TitleFont.Height = -13
         TitleFont.Name = 'Segoe UI'
         TitleFont.Style = []
+        OnDrawColumnCell = DBGrid1DrawColumnCell
         Columns = <
           item
             Expanded = False
@@ -316,35 +318,30 @@ object frmContasPagarConsultar: TfrmContasPagarConsultar
             Expanded = False
             FieldName = 'data_vencimento'
             Title.Caption = 'Data Vencimento'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'valor_abatido'
             Title.Caption = 'Valor Abatido'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'valor_compra'
             Title.Caption = 'Data Compra'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'data_cadastro'
             Title.Caption = 'Data Cadastro'
-            Width = 64
             Visible = True
           end
           item
             Expanded = False
             FieldName = 'data_pagamento'
             Title.Caption = 'Data Pagamento'
-            Width = 64
             Visible = True
           end>
       end

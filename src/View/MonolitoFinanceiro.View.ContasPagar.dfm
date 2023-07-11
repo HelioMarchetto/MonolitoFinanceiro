@@ -5,13 +5,14 @@ inherited frmContasPagar: TfrmContasPagar
   ExplicitHeight = 558
   TextHeight = 13
   inherited PnlPrincipal: TCardPanel
+    ActiveCard = cardCadastro
     ExplicitWidth = 765
     ExplicitHeight = 519
     inherited cardCadastro: TCard
       Width = 767
       Height = 518
-      ExplicitWidth = 763
-      ExplicitHeight = 517
+      ExplicitWidth = 767
+      ExplicitHeight = 518
       object Label2: TLabel [0]
         Left = 24
         Top = 40
@@ -44,15 +45,15 @@ inherited frmContasPagar: TfrmContasPagar
         Top = 446
         Width = 767
         TabOrder = 5
-        ExplicitTop = 445
-        ExplicitWidth = 763
+        ExplicitTop = 446
+        ExplicitWidth = 767
         inherited btnCancelar: TButton
           Left = 670
-          ExplicitLeft = 666
+          ExplicitLeft = 670
         end
         inherited btnSalvar: TButton
           Left = 574
-          ExplicitLeft = 570
+          ExplicitLeft = 574
         end
       end
       object edtDescricao: TEdit
@@ -95,7 +96,7 @@ inherited frmContasPagar: TfrmContasPagar
         Width = 794
         Height = 275
         Alignment = taLeftJustify
-        ActiveCard = cardParcelaUnica
+        ActiveCard = cardParcelamento
         BevelOuter = bvNone
         TabOrder = 4
         object cardParcelaUnica: TCard
@@ -236,12 +237,14 @@ inherited frmContasPagar: TfrmContasPagar
             Width = 460
             Height = 137
             DataSource = dsParcelas
+            DrawingStyle = gdsGradient
             TabOrder = 4
             TitleFont.Charset = DEFAULT_CHARSET
             TitleFont.Color = clWindowText
             TitleFont.Height = -11
             TitleFont.Name = 'Tahoma'
             TitleFont.Style = []
+            OnDrawColumnCell = DBGrid2DrawColumnCell
           end
         end
       end
@@ -249,21 +252,21 @@ inherited frmContasPagar: TfrmContasPagar
     inherited cardPesquisa: TCard
       Width = 767
       Height = 518
-      ExplicitWidth = 767
-      ExplicitHeight = 518
+      ExplicitWidth = 763
+      ExplicitHeight = 517
       inherited pnlPesquisa: TPanel
         Width = 767
-        ExplicitWidth = 767
+        ExplicitWidth = 763
         inherited Button1: TButton
           Left = 670
-          ExplicitLeft = 670
+          ExplicitLeft = 666
         end
       end
       inherited pnlGrid: TPanel
         Width = 767
         Height = 381
-        ExplicitWidth = 767
-        ExplicitHeight = 381
+        ExplicitWidth = 763
+        ExplicitHeight = 380
         inherited DBGrid1: TDBGrid
           Width = 765
           Height = 379
@@ -345,11 +348,14 @@ inherited frmContasPagar: TfrmContasPagar
       inherited pnlPesquisaBotoes: TPanel
         Top = 446
         Width = 767
-        ExplicitTop = 446
-        ExplicitWidth = 767
+        ExplicitTop = 445
+        ExplicitWidth = 763
         inherited btnFechar: TButton
           Left = 670
-          ExplicitLeft = 670
+          ExplicitLeft = 666
+        end
+        inherited btnImprimir: TButton
+          OnClick = btnImprimirClick
         end
       end
     end

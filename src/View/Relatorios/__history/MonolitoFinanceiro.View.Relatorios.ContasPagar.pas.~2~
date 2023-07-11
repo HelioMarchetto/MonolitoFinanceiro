@@ -1,0 +1,37 @@
+unit MonolitoFinanceiro.View.Relatorios.ContasPagar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  MonolitoFinanceiro.View.Relatorios.Padrao, Data.DB, RLReport;
+
+type
+  TrelContasPagar = class(TrelPadrao)
+    RLLabel3: TRLLabel;
+    RLLabel4: TRLLabel;
+    RLLabel6: TRLLabel;
+    RLLabel7: TRLLabel;
+    RLLabel5: TRLLabel;
+    RLDBText1: TRLDBText;
+    RLDBText2: TRLDBText;
+    RLDBText3: TRLDBText;
+    RLDBText4: TRLDBText;
+    RLDBText5: TRLDBText;
+    RLBand6: TRLBand;
+    lblTotal: TRLLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  relContasPagar: TrelContasPagar;
+
+implementation
+
+{$R *.dfm}
+
+end.

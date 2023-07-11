@@ -1,13 +1,10 @@
 inherited frmUsuarios: TfrmUsuarios
   Caption = 'Cadastro Usu'#225'rios'
   ClientHeight = 469
-  ClientWidth = 773
   ExplicitHeight = 507
   TextHeight = 13
   inherited PnlPrincipal: TCardPanel
-    Width = 773
     Height = 469
-    ExplicitWidth = 769
     ExplicitHeight = 468
     inherited cardCadastro: TCard
       Height = 467
@@ -63,21 +60,14 @@ inherited frmUsuarios: TfrmUsuarios
     end
     inherited cardPesquisa: TCard
       Height = 467
-      ExplicitWidth = 767
       ExplicitHeight = 466
-      inherited pnlPesquisa: TPanel
-        ExplicitWidth = 767
-        inherited Button1: TButton
-          ExplicitLeft = 670
-        end
-      end
       inherited pnlGrid: TPanel
         Height = 330
-        ExplicitWidth = 767
         ExplicitHeight = 329
         inherited DBGrid1: TDBGrid
           Height = 328
           DataSource = DataSource1
+          DrawingStyle = gdsGradient
           PopupMenu = PopupMenu1
           Columns = <
             item
@@ -103,10 +93,6 @@ inherited frmUsuarios: TfrmUsuarios
       inherited pnlPesquisaBotoes: TPanel
         Top = 395
         ExplicitTop = 394
-        ExplicitWidth = 767
-        inherited btnFechar: TButton
-          ExplicitLeft = 670
-        end
         inherited btnImprimir: TButton
           OnClick = btnImprimirClick
         end
