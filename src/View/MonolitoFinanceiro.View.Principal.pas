@@ -52,7 +52,8 @@ uses
   MonolitoFinanceiro.View.ContasPagar, MonolitoFinanceiro.View.ContasReceber,
   MonolitoFinanceiro.View.ContasReceber.Consultar,
   MonolitoFinanceiro.View.ContasPagar.Consultar,
-  MonolitoFinanceiro.View.Caixa.Extrato;
+  MonolitoFinanceiro.View.Caixa.Extrato,
+  MonolitoFinanceiro.View.CadastrarAdmin;
 
 {$R *.dfm}
 
@@ -63,6 +64,18 @@ begin
     frmSplash.ShowModal;
   finally
     FreeAndNil(frmSplash);
+  end;
+
+  if dmUsuarios.TabelaUsuariosVazia then
+  begin
+    frmCadastrarAdmin := tfrmCadastrarAdmin.Create(nil);
+    try
+      frmCadastrarAdmin.ShowModal;
+      if frmCadastrarAdmin.ModalResult <> mrOk then
+        Application.Terminate;
+    finally
+      FreeAndNil(frmCadastrarAdmin);
+    end;
   end;
 
   frmLogin := Tfrmlogin.Create(nil);

@@ -22,6 +22,7 @@ type
     cdsUsuariosStatus: TStringField;
     cdsUsuariosData_Cadastro: TDateField;
     cdsUsuariossenha_temporaria: TStringField;
+    cdsUsuariosadministrador: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
@@ -29,12 +30,14 @@ type
     { Private declarations }
   public
     { Public declarations }
+    const TEMP_PASSWORD = '123456';
     function TemLoginCadastrado (Login : String; ID : String) : Boolean;
     procedure EfetuarLogin(Login: String; Senha: String);
     function GetUsuarioLogado : TModelEntidadeUsuario;
     procedure LimparSenha(IDUsuario: String);
     procedure RedefinirSenha(Usuario : TModelEntidadeUsuario);
-    const TEMP_PASSWORD = '123456';
+    procedure CadastrarUsuario(Usuario: TModelEntidadeUsuario);
+    function TabelaUsuariosVazia : boolean;
   end;
 
 var
@@ -43,13 +46,45 @@ var
 implementation
 
 uses
-  BCrypt;
+  BCrypt, Monolito.Financeiro.Utilitarios;
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
 
 { TdmUsuarios }
+
+procedure TdmUsuarios.CadastrarUsuario(Usuario: TModelEntidadeUsuario);
+var
+  SQLConsulta : TFDQuery;
+  SQL : string;
+begin
+  SQLConsulta := TFDQuery.Create(nil);
+  try
+    SQL := 'INSERT INTO USUARIOS '+
+          '(ID, NOME, LOGIN, SENHA, DATA_CADASTRO, SENHA_TEMPORARIA, STATUS, ADMINISTRADOR) ' +
+          'VALUES(:ID, :NOME, :LOGIN, :SENHA, :DATA_CADASTRO, :SENHA_TEMPORARIA, :STATUS, :ADMINISTRADOR)';
+    SQLConsulta.Connection := dmConexao.SQLConexao;
+    SQLConsulta.SQL.Clear;
+    SQLConsulta.SQL.Add(SQL);
+    SQLConsulta.ParamByName('ID').AsString := TUtilitarios.GetID;
+    SQLConsulta.ParamByName('NOME').AsString := Usuario.Nome;
+    SQLConsulta.ParamByName('LOGIN').AsString := Usuario.Login;
+    SQLConsulta.ParamByName('SENHA').AsString := TBCrypt.GenerateHash(Usuario.Senha);
+    SQLConsulta.ParamByName('DATA_CADASTRO').AsDate := Now;
+    if Usuario.Administrador then
+      SQLConsulta.ParamByName('ADMINISTRADOR').AsString := 'S';
+    SQLConsulta.ParamByName('ADMINISTRADOR').AsString := 'N';
+    if Usuario.SenhaTemporaria then
+      SQLConsulta.ParamByName('SENHA_TEMPORARIA').AsString := 'S';
+    SQLConsulta.ParamByName('STATUS').AsString := 'A';
+    SQLConsulta.Prepare;
+    SQLConsulta.ExecSQL;
+  finally
+    SQLConsulta.Close;
+    SQLConsulta.Free;
+  end;
+end;
 
 procedure TdmUsuarios.DataModuleCreate(Sender: TObject);
 begin
@@ -87,6 +122,7 @@ begin
     FEntidadeUsuario.Login := SQLConsulta.FieldByName('LOGIN').AsString;
     FEntidadeUsuario.Senha := SQLConsulta.FieldByName('SENHA').AsString;
     FEntidadeUsuario.SenhaTemporaria := SQLConsulta.FieldByName('SENHA_TEMPORARIA').AsString = 'S';
+    FEntidadeUsuario.Administrador := SQLConsulta.FieldByName('ADMINISTRADOR').AsString = 'S';
 
   finally
     SQLConsulta.Close;
@@ -134,6 +170,23 @@ begin
   finally
     SQLQuery.Close;
     SQLQuery.Free;;
+  end;
+end;
+
+function TdmUsuarios.TabelaUsuariosVazia: boolean;
+var
+  SQLConsulta : TFDQuery;
+begin
+  SQLConsulta := TFDQuery.Create(nil);
+  try
+    SQLConsulta.Connection := dmConexao.SQLConexao;
+    SQLConsulta.SQL.Clear;
+    SQLConsulta.SQL.Add('SELECT * FROM USUARIOS');
+    SQLConsulta.Open;
+    Result := SQLConsulta.IsEmpty;
+  finally
+    SQLConsulta.Close;
+    SQLConsulta.Free;
   end;
 end;
 

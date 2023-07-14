@@ -104,6 +104,11 @@ end;
 procedure TfrmUsuarios.mnuLimparSenhaClick(Sender: TObject);
 begin
   inherited;
+  if not dmUsuarios.GetUsuarioLogado.Administrador then
+  begin
+    Application.MessageBox(PWideChar('Somente Administradores podem redefinir a senha'), 'Erro', MB_OK + MB_ICONERROR);;
+    abort;
+  end;
   if not DataSource1.DataSet.IsEmpty then
   begin
     dmUsuarios.LimparSenha(DataSource1.DataSet.FieldByName('ID').AsString);

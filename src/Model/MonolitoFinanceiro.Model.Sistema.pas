@@ -18,6 +18,12 @@ type
     procedure DataUltimoAcesso(aValue: TDateTime); overload;
     function UsuarioUltimoAcesso : String; overload;
     procedure UsuarioUltimoAcesso(aValue: String); overload;
+    function DriverID : String; overload;
+    procedure DriverID(aValue: String); overload;
+    function DataBase : String; overload;
+    procedure DataBase(aValue: String); overload;
+    function LockingMode: String; overload;
+    procedure LockingMode(aValue: String); overload;
   end;
 
 var
@@ -40,9 +46,29 @@ begin
   Result := GetConfiguracao('ACESSO', 'Data', '')
 end;
 
+function TdmSistema.DataBase: String;
+begin
+  Result := GetConfiguracao('Banco de dados', 'DataBase', 'db\SistemaFinanceiro.db')
+end;
+
+procedure TdmSistema.DataBase(aValue: String);
+begin
+  SetConfiguracao('Banco de dados', 'DataBase', aValue);
+end;
+
 procedure TdmSistema.DataUltimoAcesso(aValue: TDateTime);
 begin
   SetConfiguracao('ACESSO', 'Data', DateTimeToStr(aValue));
+end;
+
+function TdmSistema.DriverID: String;
+begin
+  Result := GetConfiguracao('Banco de dados', 'DriverID', 'SQLite');
+end;
+
+procedure TdmSistema.DriverID(aValue: String);
+begin
+  SetConfiguracao('Banco de dados', 'DriverID', aValue);
 end;
 
 function TdmSistema.GetConfiguracao(Secao, Parametro,
@@ -57,6 +83,16 @@ begin
   finally
     LArquivoConfig.Free;
   end;
+end;
+
+procedure TdmSistema.LockingMode(aValue: String);
+begin
+  SetConfiguracao('Banco de dados', 'LockingMode', aValue);
+end;
+
+function TdmSistema.LockingMode: String;
+begin
+  Result := GetConfiguracao('Banco de dados', 'LockingMode', 'Normal');
 end;
 
 procedure TdmSistema.SetConfiguracao(Secao, Parametro, valorPadrao: String);

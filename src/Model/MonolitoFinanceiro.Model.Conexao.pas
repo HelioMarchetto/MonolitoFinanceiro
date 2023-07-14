@@ -17,7 +17,6 @@ type
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
-    const ArquivoConfiguracao = 'MonolitoFinanceiro.cfg';
   public
     { Public declarations }
     procedure CarregaConfiguracoes;
@@ -30,6 +29,9 @@ var
 
 implementation
 
+uses
+  MonolitoFinanceiro.Model.Sistema;
+
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
@@ -37,31 +39,11 @@ implementation
 { TDataModule1 }
 
 procedure TdmConexao.CarregaConfiguracoes;
-var
-  ParametroNome : String;
-  ParametroValor : String;
-  Contador : Integer;
-  ListaParametros : TStringList;
 begin
   SQLConexao.Params.Clear;
-  if not FileExists(ArquivoConfiguracao) then
-    raise Exception.Create('Arquivos de configuração não encontrado');
-  ListaParametros := TStringList.Create;
-  try
-    ListaParametros.LoadFromFile(ArquivoConfiguracao);
-    for Contador := 0 to Pred(ListaParametros.Count) do
-    begin
-      if ListaParametros[Contador].IndexOf('=') > 0 then
-      begin
-        ParametroNome := ListaParametros[Contador].Split(['='])[0].Trim;
-        ParametroValor := ListaParametros[Contador].Split(['='])[1].Trim;
-        SQLConexao.Params.Add(ParametroNome + '=' + ParametroValor);
-      end;
-    end;
-  finally
-    ListaParametros.Free;
-  end;
-
+  SQLConexao.Params.DriverID := dmSistema.DriverID;
+  SQLConexao.Params.Database := dmSistema.DataBase;
+  SQLConexao.Params.Add('LockingMode=' + dmSistema.LockingMode);
 end;
 
 procedure TdmConexao.Conectar;

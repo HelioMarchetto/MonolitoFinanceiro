@@ -1,0 +1,37 @@
+unit MonolitoFinanceiro.View.CadastrarAdmin;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TfrmCadastrarAdmin = class(TForm)
+    Panel1: TPanel;
+    lblUsuario: TLabel;
+    lblUsuario2: TLabel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    Label3: TLabel;
+    edtSenha: TEdit;
+    Panel4: TPanel;
+    Label2: TLabel;
+    edtConfirmarSenha: TEdit;
+    Panel5: TPanel;
+    btnConfirmar: TButton;
+    btnCancelar: TButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmCadastrarAdmin: TfrmCadastrarAdmin;
+
+implementation
+
+{$R *.dfm}
+
+end.

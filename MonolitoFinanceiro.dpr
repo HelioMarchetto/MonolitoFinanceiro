@@ -40,7 +40,8 @@ uses
   MonolitoFinanceiro.View.Caixa.Extrato in 'src\View\MonolitoFinanceiro.View.Caixa.Extrato.pas' {frmCaixaExtrato},
   MonolitoFinanceiro.View.Relatorios.Caixa.Extrato in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.Caixa.Extrato.pas' {relCaixaExtrato},
   MonolitoFinanceiro.View.Relatorios.Caixa in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.Caixa.pas' {relCaixa},
-  MonolitoFinanceiro.View.Relatorios.ContasPagar in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.ContasPagar.pas' {relContasPagar};
+  MonolitoFinanceiro.View.Relatorios.ContasPagar in 'src\View\Relatorios\MonolitoFinanceiro.View.Relatorios.ContasPagar.pas' {relContasPagar},
+  MonolitoFinanceiro.View.CadastrarAdmin in 'src\View\MonolitoFinanceiro.View.CadastrarAdmin.pas' {frmCadastrarAdmin};
 
 {$R *.res}
 
